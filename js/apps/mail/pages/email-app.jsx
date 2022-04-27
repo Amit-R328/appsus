@@ -1,6 +1,6 @@
 import { emailService } from "../services/email-service.js"
 import { EmailList } from "../cmps/email-list.jsx"
-
+import { EmailCompose } from "../cmps/email-compose.jsx"
 
 
 export class EmailApp extends React.Component {
@@ -38,8 +38,12 @@ export class EmailApp extends React.Component {
         this.setState({ filterBy }, this.loadEmails)
     }
 
+    onCreateNewEmail = (isOn) => {
+        this.setState({isNewEmail: isOn})
+    }
+
     render() {
-        const { emails } = this.state
+        const { emails, selectedEmail, isNewEmail, draft, isNavBarExpend, menuIsHover } = this.state
         if (!emails) return <h1>Loading...</h1>
         return (
             <section className="email-app">
@@ -57,6 +61,7 @@ export class EmailApp extends React.Component {
                 <div className="email-right-layout">
                     <EmailList emails={emails}/>
                 </div>
+                {isNewEmail && <EmailCompose userComposer={emailService.getLoggedUser()} onCreateNewEmail={this.onCreateNewEmail} isOpen={isNewEmail}/>}
             </section>
         )
     }
