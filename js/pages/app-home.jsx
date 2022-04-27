@@ -1,4 +1,3 @@
-'use strict'
 export class AppHome extends React.Component{
     render(){
         return (
