@@ -2,7 +2,8 @@ import { storageService } from "../../../services/storage.service.js"
 import { utilService } from "../../../services/util.service.js"
 
 export const emailService = {
-    query
+    query,
+    getLoggedUser,
 }
 
 const STORAGE_KAY = 'emailsDB'
@@ -93,4 +94,8 @@ function _saveEmailsToStorage() {
 
 function _getEmailIdxById(emailId){
     return gEmails.findIndex(email => email.id === emailId)
+}
+
+function getLoggedUser(){
+    return loggedInUser;
 }
