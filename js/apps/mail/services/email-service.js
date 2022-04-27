@@ -87,7 +87,22 @@ const loggedInUser = { email: 'puki@appsus.com', fullname: 'Puki Ben-David'}
 
 function query(filterBy){
     if(filterBy){
+        const { searchTxt, isRead, isStared, folder} = filterBy
+        let starFilter = false
 
+        if( folder === 'starred') starFilter = true
+        let filteredEmails = gEmails.filter(email => {
+            return (
+                (email.subject.toLowerCase().includes(searchTxt.toLowerCase()) ||
+                email.body.toLowerCase().includes(searchTxt.toLowerCase()) ||
+                email.composer.toLowerCase().includes(searchTxt.toLowerCase()) ||
+                email.receiver.toLowerCase().includes(searchTxt.toLowerCase())
+            ) && (email.folder === folder || starFilter)
+            )
+        })
+
+        if(folder === 'starred') filteredEmails = filteredEmails.filter(email => email.isStared)
+        return Promise.resolve(filteredEmails)
     }else {
         return Promise.resolve(gEmails.filter(email => email.folder === 'inbox'))
     }

@@ -23,14 +23,9 @@ export class EmailApp extends React.Component {
     }
 
     loadEmails = () => {
-        const emails = emailService.query(this.state.filterBy)
-            .then(emails => {
-                this.setState({
-                    emails, checkedEmails: emails.filter(
-                        email => email.isChecked
-                    )
-                })
-            })
+        const emails = emailService.query(this.state.filterBy).then(emails => {
+            this.setState({ emails, checkedEmails: emails.filter(email => email.isChecked) });
+        })
     }
 
     onSetFolderFilter = (folder) => {
@@ -107,7 +102,7 @@ export class EmailApp extends React.Component {
                 <div className="email-right-layout">
                     <EmailFilter onSetFilter={this.onSetFilter} currentFolder={this.state.filterBy ? this.state.filterBy.folder : 'inbox'}/>
                 </div>
-                <EmailList emails={emails}/>
+                <EmailList emails={emails} onSelectedEmail={this.onSelectedEmail} onCheckEmail={this.onCheckEmail} onCheckAllEmails={this.onCheckAllEmails} onMoveEmail={this.onMoveEmail} checkedEmails={this.state.checkedEmails} emailReadToggle={this.onEmailReadToggle} emailStarToggle={this.onEmailStarToggle} onSetDraft={this.onSetDraft}/>
                 {isNewEmail && <EmailCompose userComposer={emailService.getLoggedUser()} onCreateNewEmail={this.onCreateNewEmail} isOpen={isNewEmail}/>}
             </section>
         )
