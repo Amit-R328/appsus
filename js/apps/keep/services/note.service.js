@@ -27,7 +27,11 @@ function _creatNotes() {
                 type: "note-txt",
                 isPinned: true,
                 info: {
+                    title: "Bobi and Me",
                     txt: "Fullstack Me Baby!"
+                },
+                style: {
+                    backgroundColor: "#00d"
                 }
             },
             {
