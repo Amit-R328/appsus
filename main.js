@@ -1,1 +1,1 @@
-console.log('in')
+'use strict'
