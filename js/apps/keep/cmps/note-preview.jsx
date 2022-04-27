@@ -5,7 +5,9 @@ import { ColorInput } from "./color-input.jsx"
 export class NotePreview extends React.Component {
 
     state = {
-        note: null
+        note: null,
+        isOnSetColor: false
+        
     }
 
     componentDidMount() {
@@ -13,8 +15,14 @@ export class NotePreview extends React.Component {
         this.setState({note: this.props.note})
     }
     
-    handleStyleChange = (field, value) => {
-        this.setState((prevState) => ({ note: { ...prevState,stayl:{ [field]: value }} }))
+    handleStyleChange = (value) => {
+        
+        this.setState((prevState) => ({ note: { ...prevState.note, style: { ...prevState.note.style , backgroundColor: value} }, isOnSetColor: false }))
+
+    }
+
+    onSetColor = () =>{
+        this.setState({isOnSetColor: true})
     }
 
     onDeleteNote = () => {
@@ -27,14 +35,16 @@ export class NotePreview extends React.Component {
 
     render() {
         const { note } = this.props
+        console.log(this.state.note)
         if (!note) return  <React.Fragment></React.Fragment>
         return (
             <section className="note-container">
                 <DynamicCmp note={note} />
                 <section className="note-edit">
                     <button onClick={this.onDeleteNote}>delete</button>
-                    <button >color</button>
-                    <ColorInput/>
+                    <button onClick={this.onSetColor}>color</button>
+                    {this.state.isOnSetColor &&  <ColorInput handleStyleChange={this.handleStyleChange}/>}
+                   
                 </section>
                 </section>
         )

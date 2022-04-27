@@ -7,7 +7,7 @@ export function ColorInput({ handleStyleChange }) {
             <div className="items-container">
                 {colors.map(color => <div className="item" key={color}
                     style={{ backgroundColor: color }}
-                    onClick={() => handleStyleChange('backgroundColor', color)}>
+                    onClick={() => handleStyleChange(color)}>
                 </div>)}
             </div>
         </section>
