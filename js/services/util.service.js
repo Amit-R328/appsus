@@ -6,6 +6,21 @@ export const utilService = {
     padNum,
     getDayName,
     getMonthName,
+    getFormattedDateNTime,
+}
+
+function getFormattedDateNTime(date){
+    let formattedDate = new Date(date);
+    const year = formattedDate.getFullYear();
+    const month = formattedDate.getMonth() + 1;
+    const day = formattedDate.getDate();
+
+    const hour = formattedDate.getHours();
+    const minutes = formattedDate.getMinutes();
+    return {
+        date: `${day < 10 ? `0${day}` : day}/${month < 10 ? `0${month}` : month}/${year}`,
+        time: `${hour < 10 ? `0${hour}` : hour}:${minutes < 10 ? `0${minutes}` : minutes}`
+    }
 }
 
 function makeId(length = 6) {
