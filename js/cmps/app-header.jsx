@@ -12,7 +12,7 @@ class _AppHeader extends React.Component{
                 <nav className="nav">
                     <NavLink to="/"></NavLink>
                     <NavLink to="/email">emails</NavLink>
-                    <NavLink to="/notes"></NavLink>
+                    <NavLink to="/notes">Notes</NavLink>
                     <NavLink to="/about"></NavLink>
                 </nav>
             </header>
