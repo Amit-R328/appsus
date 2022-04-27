@@ -30,6 +30,14 @@ export class EmailApp extends React.Component {
             })
     }
 
+    onSelectedEmail = (email) => {
+        this.setState({ selectedEmail: email })
+    }
+
+    onSetFilter = (filterBy) => {
+        this.setState({ filterBy }, this.loadEmails)
+    }
+
     render() {
         const { emails } = this.state
         if (!emails) return <h1>Loading...</h1>
