@@ -4,10 +4,15 @@ export function NotePreview({note}) {
 
    
     return(
-        <section className="note-preview">
+        <React.Fragment>
+
            note preview
            <DynamicCmp note={note}/>
-        </section>
+           <section className="note-edit">
+               <button>delete</button>
+               <button>color</button>
+           </section>
+        </React.Fragment>
     )
     
 }
