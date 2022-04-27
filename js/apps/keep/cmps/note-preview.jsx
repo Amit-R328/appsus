@@ -7,46 +7,47 @@ export class NotePreview extends React.Component {
     state = {
         note: null,
         isOnSetColor: false
-        
+
     }
 
     componentDidMount() {
-        console.log(this.props)
-        this.setState({note: this.props.note})
+        this.setState({ note: this.props.note })
     }
-    
-    handleStyleChange = (value) => {
-        
-        this.setState((prevState) => ({ note: { ...prevState.note, style: { ...prevState.note.style , backgroundColor: value} }, isOnSetColor: false }))
+
+    handleStyleChange = (color) => {
+        noteService.setColor(color, this.props.note.id)
+            .then(() => {
+                this.setState((prevState) => ({ note: { ...prevState.note, style: { ...prevState.note.style, backgroundColor: color } }, isOnSetColor: false }))
+                this.props.loadNotes()
+            })
 
     }
 
-    onSetColor = () =>{
-        this.setState({isOnSetColor: true})
+    onSetColor = () => {
+        this.setState({ isOnSetColor: true })
     }
 
     onDeleteNote = () => {
         noteService.deleteNote(this.props.note.id)
-            .then(()=>{
-                this.setState({note: null})
+            .then(() => {
+                this.setState({ note: null })
                 this.props.loadNotes()
             })
     }
 
     render() {
         const { note } = this.props
-        console.log(this.state.note)
-        if (!note) return  <React.Fragment></React.Fragment>
+        if (!note) return <React.Fragment></React.Fragment>
         return (
             <section className="note-container">
                 <DynamicCmp note={note} />
                 <section className="note-edit">
                     <button onClick={this.onDeleteNote}>delete</button>
                     <button onClick={this.onSetColor}>color</button>
-                    {this.state.isOnSetColor &&  <ColorInput handleStyleChange={this.handleStyleChange}/>}
-                   
+                    {this.state.isOnSetColor && <ColorInput handleStyleChange={this.handleStyleChange} />}
+
                 </section>
-                </section>
+            </section>
         )
     }
 
