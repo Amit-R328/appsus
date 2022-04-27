@@ -1,7 +1,7 @@
 import { emailService } from "../services/email-service.js"
 import { EmailList } from "../cmps/email-list.jsx"
 import { EmailCompose } from "../cmps/email-compose.jsx"
-
+import { EmailFilter } from "../cmps/email-filter.jsx"
 
 export class EmailApp extends React.Component {
     state = {
@@ -59,8 +59,9 @@ export class EmailApp extends React.Component {
                 </div>
 
                 <div className="email-right-layout">
-                    <EmailList emails={emails}/>
+                    <EmailFilter onSetFilter={this.onSetFilter} currentFolder={this.state.filterBy ? this.state.filterBy.folder : 'inbox'}/>
                 </div>
+                <EmailList emails={emails}/>
                 {isNewEmail && <EmailCompose userComposer={emailService.getLoggedUser()} onCreateNewEmail={this.onCreateNewEmail} isOpen={isNewEmail}/>}
             </section>
         )
