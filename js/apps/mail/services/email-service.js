@@ -5,6 +5,10 @@ export const emailService = {
     query,
     getLoggedUser,
     createEmail,
+    isUserTheComposer,
+    toggleEmailRead,
+    getUnReadEmailCount,
+    toggleCheckAllEmails,
 }
 
 const STORAGE_KAY = 'emailsDB'
@@ -101,6 +105,17 @@ function getLoggedUser(){
     return loggedInUser;
 }
 
+function isUserTheComposer(composer) {
+    return composer === loggedInUser.email
+}
+
+function toggleCheckAllEmails(filterBy, isChecked){
+    query(filterBy).then(emailsToToggle => {
+        emailsToToggle.forEach(email => { email.isChecked = isChecked})
+        _saveEmailsToStorage()
+    })
+}
+
 function createEmail(subject, body, folder="inbox", composer, receiver = loggedInUser.email){
     const email = {
         id: utilService.makeId(4),
@@ -115,4 +130,18 @@ function createEmail(subject, body, folder="inbox", composer, receiver = loggedI
     }
     gEmails.push(email)
     _saveEmailsToStorage()
+}
+
+function toggleEmailRead(emailId){
+    const emailIdx = _getEmailIdxById(emailId)
+    gEmails[emailIdx].isRead = !gEmails[emailIdx].isRead
+    _saveEmailsToStorage();
+}
+
+function getUnReadEmailCount(){
+    let sum = 0
+    gEmails.forEach(email => {
+        if(!email.isRead) sum++
+    })
+    return sum
 }
