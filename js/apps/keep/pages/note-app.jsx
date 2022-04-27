@@ -1,7 +1,6 @@
 import { noteService } from "../services/note.service.js"
 import { NoteList } from "../cmps/note-list.jsx"
-import { NoteAdd } from "./note-add.jsx"
-
+import { NoteAdd } from "../cmps/note-add.jsx"
 
 
 export class NoteApp extends React.Component {
@@ -15,17 +14,19 @@ export class NoteApp extends React.Component {
     }
 
     loadNotes = () => {
-       noteService.query()
-       .then(notes => this.setState((prevState) => ({...prevState, notes})))
+        noteService.query()
+            .then(notes => this.setState((prevState) => ({ ...prevState, notes })))
     }
+
+
 
     render() {
         const { notes } = this.state
 
         return (
             <section className="note-app">
-                <NoteAdd loadNotes={this.loadNotes}/>
-                <NoteList notes={notes} />
+                <NoteAdd loadNotes={this.loadNotes} />
+                <NoteList notes={notes} loadNotes={this.loadNotes} />
             </section>
         )
 

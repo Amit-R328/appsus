@@ -1,4 +1,20 @@
-/* .note-txt{
-    border: 1px solid rgb(215, 18, 18);
+.note-txt {
+    border: 1px solid rgb(199, 195, 195);
+    width: 190px;
+    border-radius: 5%;
+    background-color: rgb(253, 254, 254);
+    padding-top: 5px;
+    padding-inline-start: 10px;
+    font-family: sans-serif;
+    margin-top: 10px;
+}
 
-} */
+.note-txt .title {
+    font-weight: 600;
+    padding-left: 20px;
+}
+
+.note-txt .txt {
+    font-size: 1.2rem;
+    margin-top: 7px;
+}
