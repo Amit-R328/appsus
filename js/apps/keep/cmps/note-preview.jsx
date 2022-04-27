@@ -1,21 +1,50 @@
 import { NoteTxt } from "./dynmaic-note/note-txt.jsx"
+import { noteService } from "../services/note.service.js"
+import { ColorInput } from "./color-input.jsx"
 
-export function NotePreview({note}) {
+export class NotePreview extends React.Component {
 
-   
-    return(
-        <React.Fragment>
-           <DynamicCmp note={note}/>
-           <section className="note-edit">
-               <button>delete</button>
-               <button>color</button>
-           </section>
-        </React.Fragment>
-    )
+    state = {
+        note: null
+    }
+
+    componentDidMount() {
+        console.log(this.props)
+        this.setState({note: this.props.note})
+    }
     
+    handleStyleChange = (field, value) => {
+        this.setState((prevState) => ({ note: { ...prevState,stayl:{ [field]: value }} }))
+    }
+
+    onDeleteNote = () => {
+        noteService.deleteNote(this.props.note.id)
+            .then(()=>{
+                this.setState({note: null})
+                this.props.loadNotes()
+            })
+    }
+
+    render() {
+        const { note } = this.props
+        if (!note) return  <React.Fragment></React.Fragment>
+        return (
+            <section className="note-container">
+                <DynamicCmp note={note} />
+                <section className="note-edit">
+                    <button onClick={this.onDeleteNote}>delete</button>
+                    <button >color</button>
+                    <ColorInput/>
+                </section>
+                </section>
+        )
+    }
+
+
+
 }
 
-function DynamicCmp({note}) {
+function DynamicCmp({ note }) {
     switch (note.type) {
         case 'note-txt':
             return <NoteTxt {...note} />

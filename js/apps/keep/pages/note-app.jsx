@@ -14,17 +14,19 @@ export class NoteApp extends React.Component {
     }
 
     loadNotes = () => {
-       noteService.query()
-       .then(notes => this.setState((prevState) => ({...prevState, notes})))
+        noteService.query()
+            .then(notes => this.setState((prevState) => ({ ...prevState, notes })))
     }
+
+
 
     render() {
         const { notes } = this.state
 
         return (
             <section className="note-app">
-                <NoteAdd loadNotes={this.loadNotes}/>
-                <NoteList notes={notes} />
+                <NoteAdd loadNotes={this.loadNotes} />
+                <NoteList notes={notes} loadNotes={this.loadNotes} />
             </section>
         )
 
