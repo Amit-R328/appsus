@@ -7,7 +7,7 @@ class _AppHeader extends React.Component{
         return (
             <header className="header">
                 <div className="logo">
-                    <NavLink to="/"><img src="assests\img\logo.png"/></NavLink>
+                    <NavLink to="/"><img src="assets\img\logo.png"/></NavLink>
                 </div>
                 <nav className="nav">
                     <NavLink to="/"></NavLink>

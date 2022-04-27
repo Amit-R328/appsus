@@ -1,7 +1,9 @@
 import { storageService } from "../../../services/storage.service.js"
+import { utilService } from "../../../services/util.service.js"
 
 export const noteService = {
-    query
+    query,
+    addNote
 }
 
 const KEY = 'notesDB'
@@ -15,6 +17,15 @@ function query() {
     return Promise.resolve(notes)
 }
 
+
+function addNote({note}){
+    const notes = _loadFromStorage()
+    note.id = utilService.makeId()
+    notes.push(note)
+    _saveToStorage(notes)
+    return Promise.resolve()
+
+}
 
 
 

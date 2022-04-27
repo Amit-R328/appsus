@@ -5,8 +5,6 @@ export function NotePreview({note}) {
    
     return(
         <React.Fragment>
-
-           note preview
            <DynamicCmp note={note}/>
            <section className="note-edit">
                <button>delete</button>
