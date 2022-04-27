@@ -1,5 +1,5 @@
 import { noteService } from "../services/note.service.js"
-import { NotesList } from "../cmps/note-list.jsx"
+import { NoteList } from "../cmps/note-list.jsx"
 
 
 export class NoteApp extends React.Component {
@@ -22,7 +22,7 @@ export class NoteApp extends React.Component {
 
         return (
             <section className="note-app">
-                <NotesList notes={notes} />
+                <NoteList notes={notes} />
             </section>
         )
 
