@@ -4,6 +4,7 @@ import { utilService } from "../../../services/util.service.js"
 export const emailService = {
     query,
     getLoggedUser,
+    createEmail,
 }
 
 const STORAGE_KAY = 'emailsDB'
@@ -98,4 +99,20 @@ function _getEmailIdxById(emailId){
 
 function getLoggedUser(){
     return loggedInUser;
+}
+
+function createEmail(subject, body, folder="inbox", composer, receiver = loggedInUser.email){
+    const email = {
+        id: utilService.makeId(4),
+        subject,
+        body,
+        isRead: false,
+        isStared: false,
+        folder,
+        sentAt: Date.now,
+        composer,
+        receiver: receiver
+    }
+    gEmails.push(email)
+    _saveEmailsToStorage()
 }
