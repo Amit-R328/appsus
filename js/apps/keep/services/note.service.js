@@ -6,7 +6,9 @@ export const noteService = {
     addNote,
     deleteNote,
     setColor,
-    setPin
+    setPin,
+    getById,
+    setNote
 }
 
 const KEY = 'notesDB'
@@ -37,13 +39,32 @@ function deleteNote(noteId) {
     return Promise.resolve()
 }
 
-function setPin(noteId){
+function getById(noteId) {
+    const notes = _loadFromStorage()
+    const note = notes.find(note => note.id === noteId)
+    return Promise.resolve(note)
+}
+
+function setNote(editNote, noteId) {
+    console.log(editNote)
     let notes = _loadFromStorage()
     notes = notes.map(note => {
         if (note.id !== noteId) return note
-        else{
+        else {
+            return editNote
+        }
+    })
+    _saveToStorage(notes)
+    return Promise.resolve()
+}
+
+function setPin(noteId) {
+    let notes = _loadFromStorage()
+    notes = notes.map(note => {
+        if (note.id !== noteId) return note
+        else {
             note.isPinned = !note.isPinned
-          return note
+            return note
         }
     })
     _saveToStorage(notes)
@@ -56,9 +77,9 @@ function setColor(color, noteId) {
     let notes = _loadFromStorage()
     notes = notes.map(note => {
         if (note.id !== noteId) return note
-        else{
-            note.style = {backgroundColor: color}
-          return note
+        else {
+            note.style = { backgroundColor: color }
+            return note
         }
     })
     _saveToStorage(notes)

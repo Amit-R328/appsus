@@ -1,6 +1,5 @@
 import { ColorInput } from "./color-input.jsx"
 
-
 export class NoteEditor extends React.Component {
 
     state = {
@@ -15,6 +14,9 @@ export class NoteEditor extends React.Component {
         }
     }
 
+
+   
+  
     handleChange = ({ target }) => {
         const field = target.name
         const value = target.value
@@ -32,6 +34,7 @@ export class NoteEditor extends React.Component {
     render() {
         const { onAddNote } = this.props
         const { note } = this.state
+        
 
         return (
             <section style={note.style} className="note-editor">
@@ -52,6 +55,7 @@ export class NoteEditor extends React.Component {
         )
     }
 }
+
 
 
 
