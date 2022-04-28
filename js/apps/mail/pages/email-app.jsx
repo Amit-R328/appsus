@@ -22,10 +22,28 @@ export class EmailApp extends React.Component {
         this.loadEmails()
     }
 
+    componentWillUnmount() {
+        emailService.cleanAllCheckedEmails();
+    }
+
+
     loadEmails = () => {
         const emails = emailService.query(this.state.filterBy).then(emails => {
             this.setState({ emails, checkedEmails: emails.filter(email => email.isChecked) });
         })
+    }
+
+    onMoveEmail = (emailId, folder) => {
+        const emailFolder = emailService.getEmailFolder(emailId)
+
+        if(folder === 'trash' && emailFolder === 'trash'){
+            eventBusService.emit('user-msg', {txt: 'email deleted', type:'message', time: 2000})
+        }else{
+            eventBusService.emit('user-msg', {txt:`moved to ${folder}`, type:'message', time: 2000})
+        }
+
+        emailService.moveFolder(emailId, folder)
+        this.loadEmails()
     }
 
     onSetFolderFilter = (folder) => {
@@ -43,6 +61,11 @@ export class EmailApp extends React.Component {
             thisFilterBy = {...thisFilterBy, folder: folder}
         }
         this.setState({...this.state, filterBy: thisFilterBy}, this.loadEmails)
+    }
+
+    onCheckEmail = (emailId) => {
+        emailService.toggleCheckEmailById(emailId)
+        this.loadEmails()
     }
 
     onFolderNavChange = (isOn) => {
@@ -80,6 +103,11 @@ export class EmailApp extends React.Component {
     onEmailReadToggle=(emailId) => {
         emailService.toggleEmailRead(emailId)
         eventBusService.emit('update-unread-emails', emailService.getUnReadEmailCount())
+        this.loadEmails()
+    }
+
+    onEmailStarToggle = (emailId) => {
+        emailService.toggleEmailStar(emailId)
         this.loadEmails()
     }
 

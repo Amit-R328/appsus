@@ -4,6 +4,7 @@ import { EmailApp } from "./js/apps/mail/pages/email-app.jsx";
 import { AppHeader} from "./js/cmps/app-header.jsx"
 import { NoteApp } from "./js/apps/keep/pages/note-app.jsx";
 import { AppHome } from "./js/pages/app-home.jsx";
+import { UserMsg } from "./js/cmps/user-msg.jsx";
 
 export function App() {
     return (
@@ -23,7 +24,7 @@ export function App() {
             <footer>
                 {/* <AppFooter /> */}
             </footer>
-            {/* <UserMsg /> */}
+            <UserMsg />
         </Router>
 
     )
