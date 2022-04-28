@@ -7,7 +7,12 @@ export const noteService = {
     deleteNote,
     setColor,
     setPin,
+<<<<<<< HEAD
     createNote
+=======
+    getById,
+    setNote
+>>>>>>> 8e8a4bc3c0749a6bf29791d4850cece90ea6103d
 }
 
 
@@ -58,6 +63,28 @@ function deleteNote(noteId) {
     return Promise.resolve()
 }
 
+<<<<<<< HEAD
+=======
+function getById(noteId) {
+    const notes = _loadFromStorage()
+    const note = notes.find(note => note.id === noteId)
+    return Promise.resolve(note)
+}
+
+function setNote(editNote, noteId) {
+    console.log(editNote)
+    let notes = _loadFromStorage()
+    notes = notes.map(note => {
+        if (note.id !== noteId) return note
+        else {
+            return editNote
+        }
+    })
+    _saveToStorage(notes)
+    return Promise.resolve()
+}
+
+>>>>>>> 8e8a4bc3c0749a6bf29791d4850cece90ea6103d
 function setPin(noteId) {
     let notes = _loadFromStorage()
     notes = notes.map(note => {

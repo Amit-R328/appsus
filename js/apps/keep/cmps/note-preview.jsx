@@ -2,7 +2,6 @@ import { NoteTxt } from "./dynmaic-note/note-txt.jsx"
 import { noteService } from "../services/note.service.js"
 import { ColorInput } from "./color-input.jsx"
 
-const { Link } = ReactRouterDOM
 
 
 export class NotePreview extends React.Component {
@@ -40,7 +39,7 @@ export class NotePreview extends React.Component {
 
 
     onPinToggle = (ev) => {
-        ev.preventDefault()
+        preventDefault(ev)
         noteService.setPin(this.props.note.id)
             .then(() => {
                 this.setState((prevState) => ({ note: { ...prevState.note, isPinned: !this.state.isPinned } }))
