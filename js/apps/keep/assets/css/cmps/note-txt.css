@@ -1,6 +1,7 @@
 .note-txt {
     border: 1px solid rgb(199, 195, 195);
-    width: 190px;
+    min-width: 190px;
+   max-width: 250px;
     border-radius: 10px;
     background-color: #FFFFFC;
     padding-top: 5px;

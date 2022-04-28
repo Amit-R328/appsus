@@ -1,5 +1,6 @@
 import { noteService } from "../services/note.service.js";
 import { ColorInput } from "../cmps/color-input.jsx";
+import { NoteEditor } from "../cmps/note-editor.jsx";
 
 export class NoteDetails extends React.Component {
 
@@ -19,28 +20,11 @@ export class NoteDetails extends React.Component {
 
     }
 
-    handleChange = ({ target }) => {
-        const field = target.name
-        const value = target.value
-        this.setState((prevState) => ({ note: { ...prevState.note, info: { ...prevState.note.info, [field]: value } } }))
-    }
-    handleStyleChange = (color) => {
-        noteService.setColor(color, this.props.note.id)
-            .then(() => {
-                this.setState((prevState) => ({ note: { ...prevState.note, style: { ...prevState.note.style, backgroundColor: color } }, isOnSetColor: false }))
-            })
+   
 
-    }
-    handleStyleChange = (color) => {
-        this.setState((prevState) => ({ note: { ...prevState.note, style: { backgroundColor: color } }, isOnSetColor: false }))
-    }
-
-    onSetColor = () => {
-        this.setState({ isOnSetColor: true })
-    }
-
-    onSaveNote = () => {
-        noteService.setNote(this.state.note, this.state.note.id)
+    onSaveNote = (note) => {
+        note.isPinned = this.state.note.isPinned
+        noteService.setNote(note, note.id)
             .then(this.props.history.push('/notes'))
     }
 
@@ -60,22 +44,17 @@ export class NoteDetails extends React.Component {
 
     render() {
         const { note } = this.state
-
         if (!note) return <React.Fragment></React.Fragment>
-        console.log(note);
         const className = note.isPinned ? "fas fa-light fa-thumbtack" : "far fa-light fa-thumbtack"
 
         return (
-            <section className="note-details" style={note.style}>
+            <section className="note-details" >
 
-                <i className={className} onClick={this.onPinToggle}></i>
-                <input type="text" name="title" value={note.info.title} onChange={this.handleChange} />
-                <input type="text" name="txt" value={note.info.txt} onChange={this.handleChange} />
-                <button onClick={this.onDeleteNote}>Delete</button>
+                  {/* <i className={className} onClick={this.onPinToggle}></i> */}
 
-                <button onClick={this.onSetColor}><i className="fas fa-thin fa-palette"></i></button>
-                {this.state.isOnSetColor && <ColorInput handleStyleChange={this.handleStyleChange} />}
-                <button onClick={this.onSaveNote}>Save</button>
+               <NoteEditor note={note} onSaveNote={this.onSaveNote} onPinToggle={this.onPinToggle}>
+               </NoteEditor>
+              <button onClick={this.onDeleteNote}>Delete</button>
 
             </section>
         )
@@ -83,3 +62,36 @@ export class NoteDetails extends React.Component {
     }
 }
 
+
+{/* <section className="note-editor" style={note.style}>
+
+<i className={className} onClick={this.onPinToggle}></i>
+<textarea style={{ ...note.style, fontWeight: 700 }} name="title" cols="50" onChange={this.handleChange}
+    value={note.info.title}>
+</textarea>
+<textarea style={note.style} name="txt" cols="50" onChange={this.handleChange}
+    value={note.info.txt}>
+</textarea>
+
+<button onClick={this.onSetColor}><i className="fas fa-thin fa-palette"></i></button>
+{this.state.isOnSetColor && <ColorInput handleStyleChange={this.handleStyleChange} />}
+<button onClick={this.onSaveNote}>Save</button>
+<button onClick={this.onDeleteNote}>Delete</button>
+
+</section>
+ */}
+{/* <section style={note.style} className="note-editor">
+    <div>
+        <textarea style={{ ...note.style, fontWeight: 700 }} name="title" rows="1" cols="50" onChange={this.handleChange}
+            value={note.info.title}>
+        </textarea>
+        <textarea style={note.style} name="txt" rows="2" cols="50" onChange={this.handleChange}
+            value={note.info.txt}>
+        </textarea>
+    </div>
+    <div>
+        <button onClick={() => onAddNote(note)}> Add Note </button>
+        <button onClick={this.onSetColor}><i className="fas fa-thin fa-palette"></i></button>
+        {this.state.isOnSetColor && <ColorInput handleStyleChange={this.handleStyleChange} />}
+    </div>
+</section> */}
