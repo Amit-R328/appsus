@@ -3,6 +3,7 @@ import { EmailList } from "../cmps/email-list.jsx"
 import { EmailCompose } from "../cmps/email-compose.jsx"
 import { EmailFilter } from "../cmps/email-filter.jsx"
 import { eventBusService } from "../../../services/event-bus-service.js"
+import { EmailDetails } from "../cmps/email-details.jsx"
 
 export class EmailApp extends React.Component {
     state = {
