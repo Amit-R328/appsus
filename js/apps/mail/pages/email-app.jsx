@@ -131,6 +131,12 @@ export class EmailApp extends React.Component {
         this.loadEmails()
     }
 
+    onSortBy = (SortBy) => {
+        let {emails} = this.state
+        emailService.sortMails(emails, SortBy)
+        this.loadEmails()
+    }
+
     render() {
         const { emails, selectedEmail, isNewEmail, draft, isNavBarExpand, menuIsHover } = this.state
         if (!emails) return <h1>Loading...</h1>
@@ -156,7 +162,7 @@ export class EmailApp extends React.Component {
                         <div className='email-filter'>
                             <EmailFilter onSetFilter={this.onSetFilter} currentFolder={this.state.filterBy ? this.state.filterBy.folder : 'inbox'} />
                         </div>
-                        <EmailList emails={emails} onSelectedEmail={this.onSelectedEmail} onCheckEmail={this.onCheckEmail} onCheckAllEmails={this.onCheckAllEmails} onMoveEmail={this.onMoveEmail} checkedEmails={this.state.checkedEmails} emailReadToggle={this.onEmailReadToggle} emailStarToggle={this.onEmailStarToggle} onSetDraft={this.onSetDraft} />
+                        <EmailList emails={emails} onSelectedEmail={this.onSelectedEmail} onCheckEmail={this.onCheckEmail} onSortBy={this.onSortBy} onCheckAllEmails={this.onCheckAllEmails} onMoveEmail={this.onMoveEmail} checkedEmails={this.state.checkedEmails} emailReadToggle={this.onEmailReadToggle} emailStarToggle={this.onEmailStarToggle} onSetDraft={this.onSetDraft} />
                     </div>
                     {selectedEmail && <EmailDetails email={selectedEmail} onSelectedEmail={this.onSelectedEmail} />}
                     {isNewEmail && <EmailCompose userComposer={emailService.getLoggedUser()} onCreateNewEmail={this.onCreateNewEmail} isOpen={isNewEmail} />}
