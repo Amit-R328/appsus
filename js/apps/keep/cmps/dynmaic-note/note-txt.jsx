@@ -7,10 +7,10 @@ export function NoteTxt(props) {
     return (
         <Link to={`/notes/edit/${note.id}`}>
             <div style={note.style} className="note-txt">
-                <i className={className} onClick={() => { onPinToggle(note.id) }}></i>
+                <i className={className} onClick={(event) => { onPinToggle(event) }}></i>
                 <span className="title">{note.info.title}</span>
                 <p className="txt">{note.info.txt}</p>
             </div>
-            </Link>
+         </Link>
             )
 }
