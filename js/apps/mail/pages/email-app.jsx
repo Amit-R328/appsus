@@ -6,7 +6,7 @@ import { EmailFilter } from "../cmps/email-filter.jsx"
 import { eventBusService } from "../../../services/event-bus-service.js"
 import { EmailDetails } from "../cmps/email-details.jsx"
 import { EmailDraftEdit } from '../cmps/email-draft-edit.jsx'
-
+import { noteService } from "../../keep/services/note.service.js"
 
 export class EmailApp extends React.Component {
     state = {
@@ -116,6 +116,11 @@ export class EmailApp extends React.Component {
         this.loadEmails()
     }
 
+    onEmailNote = (email) => {
+        console.log(email.subject, email.body)
+        noteService.createNote(email.subject, email.body)
+    }
+
     onSetDraft = (email) => {
         this.setState({ draft: email })
     }
@@ -164,7 +169,7 @@ export class EmailApp extends React.Component {
                         </div>
                         <EmailList emails={emails} onSelectedEmail={this.onSelectedEmail} onCheckEmail={this.onCheckEmail} onSortBy={this.onSortBy} onCheckAllEmails={this.onCheckAllEmails} onMoveEmail={this.onMoveEmail} checkedEmails={this.state.checkedEmails} emailReadToggle={this.onEmailReadToggle} emailStarToggle={this.onEmailStarToggle} onSetDraft={this.onSetDraft} />
                     </div>
-                    {selectedEmail && <EmailDetails email={selectedEmail} onSelectedEmail={this.onSelectedEmail} />}
+                    {selectedEmail && <EmailDetails email={selectedEmail} onSelectedEmail={this.onSelectedEmail} onEmailNote={this.onEmailNote}/>}
                     {isNewEmail && <EmailCompose userComposer={emailService.getLoggedUser()} onCreateNewEmail={this.onCreateNewEmail} isOpen={isNewEmail} />}
                     {draft && <EmailDraftEdit onDraftEdit={this.onDraftEdit} draft={this.state.draft} />}
                 </div>

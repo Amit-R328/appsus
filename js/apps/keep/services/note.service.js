@@ -6,8 +6,10 @@ export const noteService = {
     addNote,
     deleteNote,
     setColor,
-    setPin
+    setPin,
+    createNote
 }
+
 
 const KEY = 'notesDB'
 
@@ -15,9 +17,28 @@ _creatNotes()
 
 
 
+
 function query() {
     let notes = _loadFromStorage()
     return Promise.resolve(notes)
+}
+
+function createNote(title, body) {
+    let notes = _loadFromStorage()
+    const note = {
+        id: "n1011111",
+        type: "note-txt",
+        isPinned: true,
+        info: {
+            title: title,
+            txt: body,
+        },
+        style: {
+            backgroundColor: "#00d"
+        }
+    }
+    notes.push(note)
+    _saveToStorage(notes)
 }
 
 
@@ -37,13 +58,13 @@ function deleteNote(noteId) {
     return Promise.resolve()
 }
 
-function setPin(noteId){
+function setPin(noteId) {
     let notes = _loadFromStorage()
     notes = notes.map(note => {
         if (note.id !== noteId) return note
-        else{
+        else {
             note.isPinned = !note.isPinned
-          return note
+            return note
         }
     })
     _saveToStorage(notes)
@@ -56,9 +77,9 @@ function setColor(color, noteId) {
     let notes = _loadFromStorage()
     notes = notes.map(note => {
         if (note.id !== noteId) return note
-        else{
-            note.style = {backgroundColor: color}
-          return note
+        else {
+            note.style = { backgroundColor: color }
+            return note
         }
     })
     _saveToStorage(notes)
