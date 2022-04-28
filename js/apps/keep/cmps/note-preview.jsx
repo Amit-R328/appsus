@@ -45,7 +45,6 @@ export class NotePreview extends React.Component {
                     <button onClick={this.onDeleteNote}>delete</button>
                     <button onClick={this.onSetColor}>color</button>
                     {this.state.isOnSetColor && <ColorInput handleStyleChange={this.handleStyleChange} />}
-
                 </section>
             </section>
         )

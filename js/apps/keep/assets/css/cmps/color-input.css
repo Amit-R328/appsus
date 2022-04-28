@@ -1,9 +1,22 @@
 .item{
     height: 30px;
     width: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.item:hover{
+    border: 1px solid rgb(24, 23, 23);
 }
 
 .items-container{
+    margin-top: 5px;
    display: flex;
    gap: 5px;
+   position:absolute;
+   flex-wrap: wrap;
+   background-color: rgb(245, 248, 252);
+   padding: 7px;
+   border-radius: 10px;
 }
