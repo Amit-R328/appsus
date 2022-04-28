@@ -1,3 +1,9 @@
 @import '../.././js/apps/keep/assets/css/note-app.css';
 
 @import './apps/email/email.css';
+
+@import './base/helpers.css';
+
+@import './cmps/user-msg.css';
+
+@import './cmps/app-header.css';

@@ -38,10 +38,10 @@ export class EmailApp extends React.Component {
     }
 
     onFoldersNavChange = (isOn) => {
-        if(isOn){
-            this.setState({isNavBarExpand: true})
-        } else{
-            this.setState({isNavBarExpand: false})
+        if (isOn) {
+            this.setState({ isNavBarExpand: true })
+        } else {
+            this.setState({ isNavBarExpand: false })
         }
     }
 
@@ -158,7 +158,7 @@ export class EmailApp extends React.Component {
                         </div>
                         <EmailList emails={emails} onSelectedEmail={this.onSelectedEmail} onCheckEmail={this.onCheckEmail} onCheckAllEmails={this.onCheckAllEmails} onMoveEmail={this.onMoveEmail} checkedEmails={this.state.checkedEmails} emailReadToggle={this.onEmailReadToggle} emailStarToggle={this.onEmailStarToggle} onSetDraft={this.onSetDraft} />
                     </div>
-                    {selectedEmail && <EmailDetails email={selectedEmail} onSelectedEmail={this.onSelectedEmail}/>}
+                    {selectedEmail && <EmailDetails email={selectedEmail} onSelectedEmail={this.onSelectedEmail} />}
                     {isNewEmail && <EmailCompose userComposer={emailService.getLoggedUser()} onCreateNewEmail={this.onCreateNewEmail} isOpen={isNewEmail} />}
                     {draft && <EmailDraftEdit onDraftEdit={this.onDraftEdit} draft={this.state.draft} />}
                 </div>
