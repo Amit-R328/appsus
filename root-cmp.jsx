@@ -9,9 +9,7 @@ import { UserMsg } from "./js/cmps/user-msg.jsx";
 export function App() {
     return (
         <Router>
-            <header>
                 <AppHeader/>
-            </header>
             <main>
                 <Switch>
                     {/* <Route path="./books" component={BooksApp}/> */}

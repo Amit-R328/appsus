@@ -135,7 +135,7 @@ export class EmailApp extends React.Component {
         const { emails, selectedEmail, isNewEmail, draft, isNavBarExpand, menuIsHover } = this.state
         if (!emails) return <h1>Loading...</h1>
         return (
-            <section className="email-app">
+            <section className="email-app main-layout">
                 <React.Fragment>
                     <Screen isOpen={selectedEmail} closeModal={this.onSelectedEmail} />
                     <Screen isOpen={menuIsHover} closeModal={this.onCloseMenu} />

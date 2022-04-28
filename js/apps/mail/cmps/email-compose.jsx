@@ -89,7 +89,7 @@ export function EmailCompose({ userComposer, onCreateNewEmail, isOpen }) {
                         <h2 className="composer-email">from: {userComposer.email}</h2>
                     </section>
                     <form className="email-metadata compose">
-                        <div className="compose-reciver">
+                        <div className="compose-receiver">
                             to:<input name="mail-receiver" className="email-input" autoComplete="off" onChange={handleChange} />
                         </div>
                         <div className="compose-subject">
