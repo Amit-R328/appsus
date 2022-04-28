@@ -38,6 +38,15 @@ export class NotePreview extends React.Component {
             })
     }
 
+
+    onPinToggle = () => {
+        noteService.setPin(this.props.note.id)
+            .then(() => {
+                this.setState((prevState) => ({ note: { ...prevState.note, isPinned: !this.state.isPinned } }))
+                this.props.loadNotes()
+            })
+    }
+
     // onSelectNote = (noteId) => {
     //     console.log('injjjj')
 
@@ -50,11 +59,12 @@ export class NotePreview extends React.Component {
         if (!note) return <React.Fragment></React.Fragment>
         return (
             <section className="note-container">
-                <DynamicCmp note={note} />
+                <DynamicCmp note={note} onPinToggle={this.onPinToggle}/>
 
                 <section className="note-edit">
                     <button onClick={this.onDeleteNote}>delete</button>
-                    <button onClick={this.onSetColor}>color</button>
+
+                    <button onClick={this.onSetColor}><i className="fas fa-thin fa-palette"></i></button>
                     {this.state.isOnSetColor && <ColorInput handleStyleChange={this.handleStyleChange} />}
                 </section>
             </section>
@@ -65,9 +75,9 @@ export class NotePreview extends React.Component {
 
 }
 
-function DynamicCmp({ note }) {
+function DynamicCmp({ note ,onPinToggle}) {
     switch (note.type) {
         case 'note-txt':
-            return <NoteTxt {...note}  />
+            return <NoteTxt note= {note} onPinToggle={onPinToggle}/>
     }
 }
