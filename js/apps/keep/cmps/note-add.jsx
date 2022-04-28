@@ -3,11 +3,12 @@ import { noteService } from "../services/note.service.js"
 export class NoteAdd extends React.Component {
 
     state = {
-        isActive: false
+        isActive: false,
+        type: ''
     }
 
-    onNewNote = () => {
-        this.setState((prevState) => ({ ...prevState, isActive: true }))
+    onNewNote = (type) => {
+        this.setState((prevState) => ({ ...prevState, isActive: true, type }))
     }
 
     onAddNote = (note) => {
@@ -22,7 +23,7 @@ export class NoteAdd extends React.Component {
     render() {
 
         const { isActive } = this.state
-
+        console.log(this.state)
         return (
             <section className="note-add">
                 {!isActive &&  <NewNote onNewNote={this.onNewNote}/>}
@@ -35,8 +36,11 @@ export class NoteAdd extends React.Component {
 function NewNote({onNewNote}) {
     return (
         <React.Fragment>
-            <button onClick={onNewNote}>
+            <button onClick={()=>{onNewNote('note-txt')}}>
                 New Note
+            </button>
+            <button onClick={()=>{onNewNote('note-todos')}}>
+                New List
             </button>
         </React.Fragment>
     )

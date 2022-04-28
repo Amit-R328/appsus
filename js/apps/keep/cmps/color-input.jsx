@@ -1,5 +1,5 @@
 export function ColorInput({ handleStyleChange }) {
-    const colors = ['#FFADAD', '#FFD6A5', '#FDFFB6', '#CAFFBF','#9BF6FF','#A0C4FF','#BDB2FF','#FFC6FF',"#FFFFFC"]
+    const colors = ['#FFADAD', '#FFD6A5', '#FDFFB6', '#CAFFBF','#9BF6FF','#A0C4FF','#BDB2FF','#FFC6FF',"#FFFFFC","#FDE2E4","#DFE7FD"]
     console.log('in')
 
     return (

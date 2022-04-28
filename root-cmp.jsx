@@ -15,6 +15,8 @@ export function App() {
             <main>
                 <Switch>
                     {/* <Route path="./books" component={BooksApp}/> */}
+                    {/* <Route path="/notes/edit/:noteId?" component={NoteEdit} /> */}
+
                     <Route path="/notes" component={NoteApp} />
                     <Route path="/email" component={EmailApp} />
                     {/* <Route path="/about" component={About} /> */}
