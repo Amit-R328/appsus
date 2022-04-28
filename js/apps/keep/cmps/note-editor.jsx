@@ -10,7 +10,8 @@ export class NoteEditor extends React.Component {
                 txt: 'enter txt'
             },
             type: "note-txt",
-            isOnSetColor: false
+            isOnSetColor: false,
+            isPinned: false
         }
     }
 
@@ -44,7 +45,7 @@ export class NoteEditor extends React.Component {
                 </div>
                 <div>
                     <button onClick={() => onAddNote(note)}> Add Note </button>
-                    <button onClick={this.onSetColor}>color</button>
+                    <button onClick={this.onSetColor}><i className="fas fa-thin fa-palette"></i></button>
                     {this.state.isOnSetColor && <ColorInput handleStyleChange={this.handleStyleChange} />}
                 </div>
             </section>

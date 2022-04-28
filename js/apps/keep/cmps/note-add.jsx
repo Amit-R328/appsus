@@ -23,7 +23,6 @@ export class NoteAdd extends React.Component {
     render() {
 
         const { isActive } = this.state
-        console.log(this.state)
         return (
             <section className="note-add">
                 {!isActive &&  <NewNote onNewNote={this.onNewNote}/>}
