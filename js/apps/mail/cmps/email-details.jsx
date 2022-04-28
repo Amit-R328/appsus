@@ -1,11 +1,15 @@
 import { emailService } from "../services/email-service.js"
 import { utilService } from "../../../services/util.service.js"
 
-export function EmailDetails({email, onSelectedEmail}) {
+
+export function EmailDetails({email, onSelectedEmail, onEmailNote}) {
     const {date, time} = utilService.getFormattedDateNTime(email.sentAt)
+    
+
     return <section className="email-details">
         <div className="email-details-header">
             <h2>{email.subject}</h2>
+            <button className="to-note" onClick={() => {onEmailNote(email)}}>Create a note</button>
             <div className="details-back" onClick={()=>{onSelectedEmail(null)}}>X</div>
         </div>
         <div className="email-metadata">
