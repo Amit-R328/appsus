@@ -1,0 +1,18 @@
+.note-editor{
+    border: 1.4px solid #98a9bc;
+    border-radius: 10px;
+     width: 410px;
+    margin: auto;
+    padding: 10px;
+}
+
+.note-editor textarea{
+    border: none;
+    font-size: 1rem;
+    width: 400px;
+}
+
+.note-editor textarea:focus { 
+    outline: none !important;
+    
+ }

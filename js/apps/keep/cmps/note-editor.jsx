@@ -33,12 +33,12 @@ export class NoteEditor extends React.Component {
         const { note } = this.state
 
         return (
-            <section className="note-editor">
+            <section style={note.style} className="note-editor">
                 <div>
-                    <textarea name="title" rows="1" cols="50" onChange={this.handleChange}
+                    <textarea style={{ ...note.style, fontWeight: 700 }} name="title" rows="1" cols="50" onChange={this.handleChange}
                         value={note.info.title}>
                     </textarea>
-                    <textarea name="txt" rows="2" cols="50" onChange={this.handleChange}
+                    <textarea style={note.style} name="txt" rows="2" cols="50" onChange={this.handleChange}
                         value={note.info.txt}>
                     </textarea>
                 </div>
