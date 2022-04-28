@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+}
+
+header {
+    border-bottom: 1px solid lightgray;
+    padding: 0 0.5rem;
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+}
+
+
