@@ -3,6 +3,7 @@ import { EmailList } from "../cmps/email-list.jsx"
 import { EmailCompose } from "../cmps/email-compose.jsx"
 import { EmailFilter } from "../cmps/email-filter.jsx"
 import { eventBusService } from "../../../services/event-bus-service.js"
+import { EmailDetails } from "../cmps/email-details.jsx"
 
 export class EmailApp extends React.Component {
     state = {
@@ -22,15 +23,28 @@ export class EmailApp extends React.Component {
         this.loadEmails()
     }
 
+    componentWillUnmount() {
+        emailService.cleanAllCheckedEmails();
+    }
+
+
     loadEmails = () => {
-        const emails = emailService.query(this.state.filterBy)
-            .then(emails => {
-                this.setState({
-                    emails, checkedEmails: emails.filter(
-                        email => email.isChecked
-                    )
-                })
-            })
+        const emails = emailService.query(this.state.filterBy).then(emails => {
+            this.setState({ emails, checkedEmails: emails.filter(email => email.isChecked) });
+        })
+    }
+
+    onMoveEmail = (emailId, folder) => {
+        const emailFolder = emailService.getEmailFolder(emailId)
+
+        if(folder === 'trash' && emailFolder === 'trash'){
+            eventBusService.emit('user-msg', {txt: 'email deleted', type:'message', time: 2000})
+        }else{
+            eventBusService.emit('user-msg', {txt:`moved to ${folder}`, type:'message', time: 2000})
+        }
+
+        emailService.moveFolder(emailId, folder)
+        this.loadEmails()
     }
 
     onSetFolderFilter = (folder) => {
@@ -48,6 +62,11 @@ export class EmailApp extends React.Component {
             thisFilterBy = {...thisFilterBy, folder: folder}
         }
         this.setState({...this.state, filterBy: thisFilterBy}, this.loadEmails)
+    }
+
+    onCheckEmail = (emailId) => {
+        emailService.toggleCheckEmailById(emailId)
+        this.loadEmails()
     }
 
     onFolderNavChange = (isOn) => {
@@ -88,6 +107,11 @@ export class EmailApp extends React.Component {
         this.loadEmails()
     }
 
+    onEmailStarToggle = (emailId) => {
+        emailService.toggleEmailStar(emailId)
+        this.loadEmails()
+    }
+
     render() {
         const { emails, selectedEmail, isNewEmail, draft, isNavBarExpend, menuIsHover } = this.state
         if (!emails) return <h1>Loading...</h1>
@@ -107,7 +131,7 @@ export class EmailApp extends React.Component {
                 <div className="email-right-layout">
                     <EmailFilter onSetFilter={this.onSetFilter} currentFolder={this.state.filterBy ? this.state.filterBy.folder : 'inbox'}/>
                 </div>
-                <EmailList emails={emails}/>
+                <EmailList emails={emails} onSelectedEmail={this.onSelectedEmail} onCheckEmail={this.onCheckEmail} onCheckAllEmails={this.onCheckAllEmails} onMoveEmail={this.onMoveEmail} checkedEmails={this.state.checkedEmails} emailReadToggle={this.onEmailReadToggle} emailStarToggle={this.onEmailStarToggle} onSetDraft={this.onSetDraft}/>
                 {isNewEmail && <EmailCompose userComposer={emailService.getLoggedUser()} onCreateNewEmail={this.onCreateNewEmail} isOpen={isNewEmail}/>}
             </section>
         )
