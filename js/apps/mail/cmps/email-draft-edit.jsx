@@ -50,7 +50,7 @@ export function EmailDraftEdit({draft, onDraftEdit}){
 
     return(
         <React.Fragment>
-            <Screen isOpen={true} closeModal={() => {exitEditMode()}}/>
+            <Screen isOpen={true} closeModal={() => {exitEditMode()}} />
             <section className="email-compose">
                 <section className="email-details">
                     <div className="email-details-header">

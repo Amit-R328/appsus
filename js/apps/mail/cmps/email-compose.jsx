@@ -78,7 +78,7 @@ export function EmailCompose({ userComposer, onCreateNewEmail, isOpen }) {
 
     return (
         <React.Fragment>
-            <Screen isOpen={isOpen} closeModal={()=>{exitEditMode()}}/>
+            <Screen isOpen={isOpen} closeModal={() => {exitEditMode()}} />
             <section className="email-compose">
                 <section className="email-details">
                     <section className="email-details-header">

@@ -17,7 +17,7 @@ export class EmailApp extends React.Component {
         draft: null,
         checkedEmails: [],
         isNavBarExpand: true,
-        menuIsHover: false,
+        menuIsHover: false
     }
 
     foldersNav = React.createRef();
@@ -38,10 +38,10 @@ export class EmailApp extends React.Component {
     }
 
     onFoldersNavChange = (isOn) => {
-        if (isOn) {
-            this.setState({ isNavBarExpand: true })
-        } else {
-            this.setState({ isNavBarExpand: false })
+        if(isOn){
+            this.setState({isNavBarExpand: true})
+        } else{
+            this.setState({isNavBarExpand: false})
         }
     }
 
@@ -153,7 +153,7 @@ export class EmailApp extends React.Component {
                 </React.Fragment>
                 <div className="email-layout">
                     <div className="email-left-layout">
-                        <nav ref={this.foldersNav} className="email-folders" onMouseEnter={() => { this.onFoldersNavChange(true) }} onMouseLeave={() => { this.onFoldersNavChange(false) }}>
+                    <nav ref={this.foldersNav} className="email-folders" onMouseEnter={()=>{this.onFoldersNavChange(true)}} onMouseLeave={()=>{this.onFoldersNavChange(false)}}>
                             <i title="compose new email" className="folder-content fas fa-plus new-compose" onClick={() => { this.onCreateNewEmail(true); this.onCloseMenu() }}>{(isNavBarExpand || menuIsHover) && <span>new email</span>}</i>
                             <i title="view inbox" className="folder-content far fa-envelope" onClick={() => { this.onSetFolderFilter('inbox'); this.onCloseMenu() }}>{(isNavBarExpand || menuIsHover) && <span>inbox</span>}</i>
                             <i title="view all starred emails" className="folder-content far fa-star" onClick={() => { this.onSetFolderFilter('starred'); this.onCloseMenu() }}>{(isNavBarExpand || menuIsHover) && <span>starred</span>}</i>
@@ -165,7 +165,7 @@ export class EmailApp extends React.Component {
 
                     <div className="email-right-layout">
                         <div className='email-filter'>
-                            <EmailFilter onSetFilter={this.onSetFilter} currentFolder={this.state.filterBy ? this.state.filterBy.folder : 'inbox'} />
+                        <EmailFilter onSetFilter={this.onSetFilter} onOpenMenu={this.onOpenMenu} onCloseMenu={this.onCloseMenu} currentFolder={this.state.filterBy ? this.state.filterBy.folder : 'inbox'} />
                         </div>
                         <EmailList emails={emails} onSelectedEmail={this.onSelectedEmail} onCheckEmail={this.onCheckEmail} onSortBy={this.onSortBy} onCheckAllEmails={this.onCheckAllEmails} onMoveEmail={this.onMoveEmail} checkedEmails={this.state.checkedEmails} emailReadToggle={this.onEmailReadToggle} emailStarToggle={this.onEmailStarToggle} onSetDraft={this.onSetDraft} />
                     </div>
