@@ -5,6 +5,7 @@ import { AppHeader} from "./js/cmps/app-header.jsx"
 import { NoteApp } from "./js/apps/keep/pages/note-app.jsx";
 import { AppHome } from "./js/pages/app-home.jsx";
 import { UserMsg } from "./js/cmps/user-msg.jsx";
+import { NoteEdit } from "./js/apps/keep/cmps/note-edit.jsx";
 
 export function App() {
     return (
@@ -13,7 +14,7 @@ export function App() {
             <main>
                 <Switch>
                     {/* <Route path="./books" component={BooksApp}/> */}
-                    {/* <Route path="/notes/edit/:noteId?" component={NoteEdit} /> */}
+                    <Route path="/notes/edit/:noteId?" component={NoteEdit} />
 
                     <Route path="/notes" component={NoteApp} />
                     <Route path="/email" component={EmailApp} />

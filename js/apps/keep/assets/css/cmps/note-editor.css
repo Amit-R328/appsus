@@ -1,7 +1,7 @@
 .note-editor{
-    border: 1.4px solid #98a9bc;
+    border: 1.4px solid #98a9bcde;
     border-radius: 10px;
-     width: 410px;
+     max-width: 410px;
     margin: auto;
     padding: 10px;
 }
