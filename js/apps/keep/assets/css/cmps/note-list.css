@@ -1,6 +1,7 @@
 .note-list{
-    background-color: aqua;
-    display: grid;
-    grid-template-columns: repeat(auto-fit,200px);
-    grid-auto-flow: dense;
+   
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 10px;
 }
