@@ -1,3 +1,5 @@
+
+
 export class EmailFilter extends React.Component{
     state = {
         filterBy: {
@@ -14,11 +16,18 @@ export class EmailFilter extends React.Component{
         })
     }
 
+    blurr = () => {
+        setTimeout(this.props.onCloseMenu,50)
+    }
+
     render(){
+        const { onOpenMenu } = this.props
+
         return (
-            <section className="email-filter">
-                <input type="text" placeholder="Search" onChange={this.handleChange} autoComplete="off"/>
-            </section>
+            <React.Fragment>
+                <i tabIndex="-1" onFocus={onOpenMenu} onBlur={this.blurr} className="fas fa-bars folders-menu-btn"></i>
+                <input type="text" placeholder="Search" onChange={this.handleChange} autoComplete="off" ></input>
+            </React.Fragment>
         )
     }
 }

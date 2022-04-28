@@ -9,7 +9,7 @@ export function EmailDetails({email, onSelectedEmail}) {
             <div className="details-back" onClick={()=>{onSelectedEmail(null)}}>X</div>
         </div>
         <div className="email-metadata">
-            <h3>{(emailService.isUsertheComposer(email.composer) ? 'To: ' : 'From: ') + email.receiver}</h3>
+            <h3>{(emailService.isUserTheComposer(email.composer) ? 'To: ' : 'From: ') + email.receiver}</h3>
             <h2 className="time">{`${time} ${date}`}</h2>
         </div>
         <div className="email-body">

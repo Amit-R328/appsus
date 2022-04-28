@@ -5,7 +5,7 @@ class _AppHeader extends React.Component{
 
     render(){
         return (
-            <header className="header">
+            <header className="header main-layout">
                 <div className="logo">
                     <NavLink to="/"><img src="assets\img\logo.png"/></NavLink>
                 </div>
