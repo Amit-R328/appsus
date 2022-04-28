@@ -4,7 +4,8 @@ import { utilService } from "../../../services/util.service.js"
 export const noteService = {
     query,
     addNote,
-    deleteNote
+    deleteNote,
+    setColor
 }
 
 const KEY = 'notesDB'
@@ -19,7 +20,7 @@ function query() {
 }
 
 
-function addNote({note}){
+function addNote({ note }) {
     const notes = _loadFromStorage()
     note.id = utilService.makeId()
     notes.push(note)
@@ -28,11 +29,24 @@ function addNote({note}){
 
 }
 
-function deleteNote(noteId){
+function deleteNote(noteId) {
     let notes = _loadFromStorage()
     notes = notes.filter(note => note.id !== noteId)
     _saveToStorage(notes)
-   return Promise.resolve()
+    return Promise.resolve()
+}
+
+function setColor(color, noteId) {
+    let notes = _loadFromStorage()
+    notes = notes.map(note => {
+        if (note.id !== noteId) return note
+        else{
+            note.style = {backgroundColor: color}
+          return note
+        }
+    })
+    _saveToStorage(notes)
+    return Promise.resolve()
 }
 
 function _creatNotes() {
