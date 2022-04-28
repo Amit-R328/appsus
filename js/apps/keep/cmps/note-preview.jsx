@@ -47,10 +47,6 @@ export class NotePreview extends React.Component {
             })
     }
 
-    // onSelectNote = (noteId) => {
-    //     console.log('injjjj')
-
-    // }
 
 
 

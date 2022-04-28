@@ -18,3 +18,8 @@
     font-size: 1.2rem;
     margin-top: 7px;
 }
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
