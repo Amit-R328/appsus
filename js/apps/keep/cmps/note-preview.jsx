@@ -39,7 +39,7 @@ export class NotePreview extends React.Component {
 
 
     onPinToggle = (ev) => {
-        preventDefault(ev)
+        ev.preventDefault()
         noteService.setPin(this.props.note.id)
             .then(() => {
                 this.setState((prevState) => ({ note: { ...prevState.note, isPinned: !this.state.isPinned } }))
