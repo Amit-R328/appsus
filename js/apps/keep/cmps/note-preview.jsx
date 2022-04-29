@@ -1,7 +1,7 @@
 import { NoteTxt } from "./dynmaic-note/note-txt.jsx"
 import { noteService } from "../services/note.service.js"
 import { ColorInput } from "./color-input.jsx"
-
+import { NoteTodos } from "./dynmaic-note/note-todos.jsx"
 
 
 export class NotePreview extends React.Component {
@@ -55,11 +55,10 @@ export class NotePreview extends React.Component {
         if (!note) return <React.Fragment></React.Fragment>
         return (
             <section className="note-container">
-                <DynamicCmp note={note} onPinToggle={this.onPinToggle}/>
+                <DynamicCmp note={note} onPinToggle={this.onPinToggle} />
 
                 <section className="note-edit">
                     <button onClick={this.onDeleteNote}>delete</button>
-
                     <button onClick={this.onSetColor}><i className="fas fa-thin fa-palette"></i></button>
                     {this.state.isOnSetColor && <ColorInput handleStyleChange={this.handleStyleChange} />}
                 </section>
@@ -71,9 +70,11 @@ export class NotePreview extends React.Component {
 
 }
 
-function DynamicCmp({ note ,onPinToggle}) {
+function DynamicCmp({ note, onPinToggle }) {
     switch (note.type) {
         case 'note-txt':
-            return <NoteTxt note= {note} onPinToggle={onPinToggle}/>
+            return <NoteTxt note={note} onPinToggle={onPinToggle} />
+        case 'note-todos':
+            return <NoteTodos note={note} onPinToggle={onPinToggle} />
     }
 }

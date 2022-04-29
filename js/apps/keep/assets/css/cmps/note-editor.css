@@ -3,6 +3,7 @@
     border-radius: 10px;
      max-width: 420px;
     padding: 10px;
+    margin: auto;
 }
 
 .note-editor textarea{
@@ -14,4 +15,9 @@
 .note-editor textarea:focus { 
     outline: none !important;
     
+ }
+
+ .todo-box{
+     margin: auto;
+     display: flex;
  }

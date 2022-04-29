@@ -1,8 +1,11 @@
+@import './cmps/note-add.css'; 
+
 @import './cmps/note-list.css';
 @import './cmps/color-input.css';
 @import './cmps/note-editor.css'; 
 
 @import './cmps/note-txt.css'; 
+
 
 @import './pages/note-details.css'
 

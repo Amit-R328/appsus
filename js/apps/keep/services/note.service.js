@@ -9,7 +9,10 @@ export const noteService = {
     setPin,
     createNote,
     getById,
-    setNote
+    setNote,
+    getNoteByType,
+    addRow,
+    deleteRow
 }
 
 
@@ -43,6 +46,32 @@ function createNote(title, body) {
     _saveToStorage(notes)
 }
 
+function addRow(todos){
+    const row = 'enter todo'
+    todos.push(row)
+    return Promise.resolve(todos)
+}
+
+function getNoteByType(type) {
+    let note = {
+        type,
+        isPinned: false,
+        info: {
+            title: 'enter title'
+        }
+    }
+    switch (type) {
+        case 'note-txt':
+            note.info.txt ='enter txt'
+            
+            break;
+        case 'note-todos':
+            note.info.todos= ['enter todo','enter 2','enter 3']
+            break;
+    }
+    return Promise.resolve(note)
+}
+
 
 function addNote({ note }) {
     const notes = _loadFromStorage()
@@ -51,6 +80,11 @@ function addNote({ note }) {
     _saveToStorage(notes)
     return Promise.resolve()
 
+}
+
+function deleteRow(todos,idx){
+    todos.splice(idx,1)
+    return Promise.resolve(todos)
 }
 
 function deleteNote(noteId) {
