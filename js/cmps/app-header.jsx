@@ -34,6 +34,7 @@ class _AppHeader extends React.Component {
                     <NavLink activeClassName="my-active" exact to='/'><i title="homepage" className="fas fa-home"></i></NavLink>
                     <NavLink to="/email"><i title="email" className="far fa-envelope"></i>{ unReadEmails !== 0 && <span className="unread-emails">{unReadEmails}</span>}</NavLink>
                     <NavLink to="/notes"><i title="notes" className="far fa-sticky-note"></i></NavLink>
+                    <NavLink to="/books"><i className='fas fa-book-open fa-lg'></i></NavLink>
                     <NavLink to="/about"><i title="about" className="fas fa-info-circle"></i></NavLink>
                 </nav>
             </header>

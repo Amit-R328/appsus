@@ -7,6 +7,7 @@ export const utilService = {
     getDayName,
     getMonthName,
     getFormattedDateNTime,
+    getCurrencySymbol,
 }
 
 function getFormattedDateNTime(date){
@@ -75,4 +76,18 @@ function getMonthName(date) {
         "July", "August", "September", "October", "November", "December"
     ]
     return monthNames[date.getMonth()]
+}
+
+function getCurrencySymbol(currencyCode) {
+    switch (currencyCode) {
+        case "EUR":
+
+            return "€";
+        case "ILS":
+
+            return "₪";
+        case "USD":
+
+            return "$";
+    }
 }

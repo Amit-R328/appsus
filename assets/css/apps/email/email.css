@@ -165,6 +165,14 @@
     transition: 0.3s;
 }
 
+.email-folders span {
+    visibility: hidden;
+}
+
+.email-folders:hover span {
+    visibility: visible;
+}
+
 .email-folders.on-hover>* {
     width: 200px;
 }

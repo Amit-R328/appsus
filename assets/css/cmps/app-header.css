@@ -19,5 +19,10 @@ header {
     font-size: 1.5rem;
     color: black;
 }
+@media (max-width: 425px){
+    .logo img{
+        width: 120px;
+    }
+}
 
 

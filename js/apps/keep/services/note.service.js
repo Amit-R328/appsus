@@ -9,11 +9,7 @@ export const noteService = {
     setPin,
     createNote,
     getById,
-<<<<<<< HEAD
-    setNote,
-=======
     setNote
->>>>>>> e38f4bb96f84141c416cf92eb85a6d0d5b4f0a30
 }
 
 
