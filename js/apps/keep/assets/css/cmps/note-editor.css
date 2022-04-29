@@ -21,3 +21,8 @@
      margin: auto;
      display: flex;
  }
+
+
+ .done {
+    text-decoration: line-through;
+ }

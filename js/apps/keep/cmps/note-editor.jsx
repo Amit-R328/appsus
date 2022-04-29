@@ -25,7 +25,7 @@ export class NoteEditor extends React.Component {
         let value = target.value
         if (idx === 0 || idx) {
             const todos = this.state.note.info.todos
-            todos[idx] = value
+            todos[idx].txt = value
             value = todos
         }
         this.setState((prevState) => ({ note: { ...prevState.note, info: { ...prevState.note.info, [field]: value }}}))

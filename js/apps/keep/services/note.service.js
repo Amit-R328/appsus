@@ -46,8 +46,11 @@ function createNote(title, body) {
     _saveToStorage(notes)
 }
 
-function addRow(todos){
-    const row = 'enter todo'
+function addRow(todos) {
+    const row = {
+        txt: 'Enter Todo',
+        isDone: false
+    }
     todos.push(row)
     return Promise.resolve(todos)
 }
@@ -57,16 +60,21 @@ function getNoteByType(type) {
         type,
         isPinned: false,
         info: {
-            title: 'enter title'
+            title: 'Enter Title'
         }
     }
     switch (type) {
         case 'note-txt':
-            note.info.txt ='enter txt'
-            
+            note.info.txt = 'Enter Txt'
+
             break;
         case 'note-todos':
-            note.info.todos= ['enter todo','enter 2','enter 3']
+            note.info.todos = [
+                {
+                    txt: 'Enter Todo',
+                    isDone: false
+                }
+            ]
             break;
     }
     return Promise.resolve(note)
@@ -82,8 +90,8 @@ function addNote({ note }) {
 
 }
 
-function deleteRow(todos,idx){
-    todos.splice(idx,1)
+function deleteRow(todos, idx) {
+    todos.splice(idx, 1)
     return Promise.resolve(todos)
 }
 

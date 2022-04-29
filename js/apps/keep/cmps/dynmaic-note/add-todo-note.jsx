@@ -23,6 +23,10 @@ export class AddTodoNote extends React.Component {
             .then(this.setState((prevState) => ({ note: { ...prevState.note, info: { ...prevState.note.info, todos: todos }}})))
     }
 
+    // onDoneToggle = () =>{
+
+    // }
+
 
 
 
@@ -46,11 +50,13 @@ export class AddTodoNote extends React.Component {
 
 function Todos({ todos, handleChange, style, onDeleteRow}) {
     return todos.map((todo, idx) => {
+        const className = todo.isDone ? 'done' : ''
+
         return (
             <div className="todo-box" key={idx}>
-                <i class="far fa-light fa-stop"></i>
-            <textarea style={style} name="todos" rows="1" cols="50" onChange={(target) => handleChange(target, idx)}
-                value={todo} >
+                <i className="far fa-light fa-stop"></i>
+            <textarea className={className} style={style} name="todos" rows="1" cols="50" onChange={(target) => handleChange(target, idx)}
+                value={todo.txt} >
             </textarea>
             <button onClick={()=>onDeleteRow(idx)} >X</button>
             </div>

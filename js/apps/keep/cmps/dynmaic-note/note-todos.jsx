@@ -24,13 +24,12 @@ export function NoteTodos(props) {
 
 
 function Todos({ todos }) {
-    console.log(todos);
     return todos.map((todo, idx) => {
+        const className = todo.isDone ? 'done' : ''
         return (
-            <li>
-                {todo}
+            <li className={className} key={idx}>
+                {todo.txt}
             </li>
-
         )
     })
 }
