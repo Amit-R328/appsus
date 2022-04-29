@@ -4,7 +4,9 @@ export const bookService = {
     query,
     getById,
     remove,
-    addReview
+    addReview,
+    _loadFromStorage,
+    _saveToStorage
 
 }
 

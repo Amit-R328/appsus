@@ -1,6 +1,7 @@
 import { eventBusService } from "../../../services/event-bus-service.js"
 import { GoogleBooks } from "../services/google-book.service.js"
 
+
 export class AddBook extends React.Component {
     state = {
         bookName: '',
@@ -14,8 +15,11 @@ export class AddBook extends React.Component {
         const result = GoogleBooks.getBookApi(value)
             .then(data => this.setState({ bookOptions: data.items }))
 
-        console.log(this.state.bookOptions)
+    }
 
+    onAdd = (book) => {
+        GoogleBooks.addGoogleBook(book)
+        this.props.loadBooks()
     }
 
     render() {
@@ -25,7 +29,7 @@ export class AddBook extends React.Component {
                     <input type="text" placeholder="add book" value={this.state.bookName}
                         onChange={this.handleChange} name="bookName" />
                     <button>Add!</button>
-                    {this.state.bookOptions.length && <BookOptions bookOptions={this.state.bookOptions} loadBooks={this.props.loadBooks} />}
+                    {this.state.bookOptions.length && <BookOptions bookOptions={this.state.bookOptions} loadBooks={this.props.loadBooks} onAdd={this.onAdd}/>}
                 </form>
             </section>
         )
@@ -38,21 +42,13 @@ class BookOptions extends React.Component {
         selectedOption: '',
     }
 
-    onAdd = (book) => {
-        GoogleBooks.addGoogleBook(book)
-        this.props.loadBooks()
-        eventBusService.emit('user-msg', {
-            type: 'success',
-            txt: 'Added book📚',
-            bookId: book.id,
-        })
-    }
+
 
     render() {
         return (
             <section className="book-options">
                 <ul>
-                    {this.state.options.map(item => <li key={item.id} onClick={() => { this.onAdd(item) }} value={item.id}>{item.volumeInfo.title}</li>)}
+                    {this.state.options.map(item => <li key={item.id} value={item.id}>{item.volumeInfo.title}<span onClick={() => this.props.onAdd(item)}> + </span></li>)}
                 </ul>
             </section>
         )
