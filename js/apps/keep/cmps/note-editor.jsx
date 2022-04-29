@@ -15,9 +15,7 @@ export class NoteEditor extends React.Component {
         } else {
             this.setState({ note: note, isOnEditNote: true })
         }
-
     }
-
 
 
     handleChange = ({ target }, idx) => {
@@ -28,34 +26,35 @@ export class NoteEditor extends React.Component {
             todos[idx].txt = value
             value = todos
         }
-        this.setState((prevState) => ({ note: { ...prevState.note, info: { ...prevState.note.info, [field]: value }}}))
+        this.setState((prevState) => ({ note: { ...prevState.note, info: { ...prevState.note.info, [field]: value } } }))
     }
+
 
     handleStyleChange = (color) => {
         this.setState((prevState) => ({ note: { ...prevState.note, style: { backgroundColor: color } }, isOnSetColor: false }))
     }
 
+
     onSetColor = () => {
         this.setState({ isOnSetColor: true })
     }
 
+
     onPinToggle = () => {
-        this.setState((prevState) => ({ note: { ...prevState.note, isPinned: !this.state.note.isPinned } }))
+        const { isPinned } = this.state.note
+        this.setState((prevState) => ({ note: { ...prevState.note, isPinned: !isPinned } }))
     }
 
     render() {
+
         const { note } = this.state
         if (!note) return <React.Fragment></React.Fragment>
-        const { onAddNote } = this.props
-        const { onSaveNote } = this.props
-        const { onPinToggle } = this.props
+        const { onAddNote, onSaveNote } = this.props
         const className = note.isPinned ? "fas fa-light fa-thumbtack" : "far fa-light fa-thumbtack"
-
-
 
         return (
             <section style={note.style} className="note-editor">
-                <i className={className} onClick={onPinToggle}></i>
+                <i className={className} onClick={this.onPinToggle}></i>
                 <DynamicCmp note={note} handleChange={this.handleChange} />
                 <div>
                     {!this.state.isOnEditNote && <button onClick={() => onAddNote(note)}> Add Note </button>}

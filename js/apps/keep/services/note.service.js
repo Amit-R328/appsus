@@ -12,9 +12,9 @@ export const noteService = {
     setNote,
     getNoteByType,
     addRow,
-    deleteRow
+    deleteRow,
+    doneToggle
 }
-
 
 const KEY = 'notesDB'
 
@@ -22,11 +22,11 @@ _creatNotes()
 
 
 
-
 function query() {
     let notes = _loadFromStorage()
     return Promise.resolve(notes)
 }
+
 
 function createNote(title, body) {
     let notes = _loadFromStorage()
@@ -46,6 +46,7 @@ function createNote(title, body) {
     _saveToStorage(notes)
 }
 
+
 function addRow(todos) {
     const row = {
         txt: 'Enter Todo',
@@ -55,6 +56,7 @@ function addRow(todos) {
     return Promise.resolve(todos)
 }
 
+
 function getNoteByType(type) {
     let note = {
         type,
@@ -63,10 +65,10 @@ function getNoteByType(type) {
             title: 'Enter Title'
         }
     }
+
     switch (type) {
         case 'note-txt':
             note.info.txt = 'Enter Txt'
-
             break;
         case 'note-todos':
             note.info.todos = [
@@ -77,7 +79,21 @@ function getNoteByType(type) {
             ]
             break;
     }
+
     return Promise.resolve(note)
+}
+
+
+function doneToggle(todos, idx, bool, noteId) {
+    todos[idx].isDone = bool
+    if (noteId) {
+        getById(noteId)
+            .then((note) => {
+                note.info.todos = todos
+                setNote(note, noteId)
+            })
+    }
+    return Promise.resolve(todos)
 }
 
 
@@ -87,13 +103,14 @@ function addNote({ note }) {
     notes.push(note)
     _saveToStorage(notes)
     return Promise.resolve()
-
 }
+
 
 function deleteRow(todos, idx) {
     todos.splice(idx, 1)
     return Promise.resolve(todos)
 }
+
 
 function deleteNote(noteId) {
     let notes = _loadFromStorage()
@@ -102,37 +119,34 @@ function deleteNote(noteId) {
     return Promise.resolve()
 }
 
+
 function getById(noteId) {
     const notes = _loadFromStorage()
     const note = notes.find(note => note.id === noteId)
     return Promise.resolve(note)
 }
 
+
 function setNote(editNote, noteId) {
-    console.log(editNote)
     let notes = _loadFromStorage()
     notes = notes.map(note => {
         if (note.id !== noteId) return note
-        else {
-            return editNote
-        }
+        return editNote
     })
     _saveToStorage(notes)
     return Promise.resolve()
 }
 
+
 function setPin(noteId) {
     let notes = _loadFromStorage()
     notes = notes.map(note => {
         if (note.id !== noteId) return note
-        else {
-            note.isPinned = !note.isPinned
-            return note
-        }
+        note.isPinned = !note.isPinned
+        return note
     })
     _saveToStorage(notes)
     return Promise.resolve()
-
 }
 
 
@@ -140,14 +154,13 @@ function setColor(color, noteId) {
     let notes = _loadFromStorage()
     notes = notes.map(note => {
         if (note.id !== noteId) return note
-        else {
-            note.style = { backgroundColor: color }
-            return note
-        }
+        note.style = { backgroundColor: color }
+        return note
     })
     _saveToStorage(notes)
     return Promise.resolve()
 }
+
 
 function _creatNotes() {
     const notes = _loadFromStorage()
@@ -181,6 +194,7 @@ function _creatNotes() {
 function _saveToStorage(notes) {
     storageService.saveToStorage(KEY, notes)
 }
+
 function _loadFromStorage() {
     return storageService.loadFromStorage(KEY)
 }

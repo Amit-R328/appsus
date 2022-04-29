@@ -1,9 +1,6 @@
+export function AddTxtNote(props) {
 
-
-export function AddTxtNote( props) {
-
-    const { handleChange } = props 
-    const { note } = props
+    const { handleChange, note } = props
 
     return (
         <div>
