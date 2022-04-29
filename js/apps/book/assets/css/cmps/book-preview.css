@@ -1,0 +1,25 @@
+.book-preview{
+    border: 1px solid rgb(100, 100, 100);
+    width: 240px;
+    background-color: rgb(222, 230, 237);
+    border-radius: 4%;
+    color: rgb(36, 36, 36);
+    font-family: sans-serif;
+    font-size: 14px;
+    height: 300px;
+
+}
+
+.book-preview>*{
+    font-weight: lighter;
+}
+
+.book-preview .img-container>img{
+    height: 175px;
+}
+
+
+.book-preview:hover{
+    box-shadow: 0px 0px 7px 1px #86858594;
+    cursor: pointer;
+}

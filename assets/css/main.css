@@ -10,4 +10,5 @@
 
 @import './pages/home.css';
 
-@import './apps/books/books.css';
+
+@import '../../js/apps/book/assets/css/main.css'

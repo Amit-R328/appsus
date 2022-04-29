@@ -1,0 +1,9 @@
+.book-filter{
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.book-filter input{
+    margin-right: 18px;
+}

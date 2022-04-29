@@ -1,0 +1,23 @@
+.book-review{
+    margin: auto;
+    background-color: rgb(216, 234, 249);
+    border-radius: 1%;
+    height: 550px;
+    max-width: 750px;
+    padding-left: 25px;
+    
+}
+
+.add-review{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.add-review div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

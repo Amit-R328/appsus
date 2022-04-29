@@ -1,0 +1,93 @@
+.book-details{
+    margin: auto;
+    background-color: rgb(216, 234, 249);
+    border-radius: 1%;
+    display: grid;
+    height: 550px;
+    max-width: 750px;
+    padding-left: 25px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100px 3fr ;
+    grid-template-areas: 
+        " header sale"
+        " details img"
+        
+    ;
+    gap: 20px;
+
+}
+.book-details>*{
+    font-family: sans-serif;
+
+}
+.book-details h2{
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.book-details h3{
+    margin-top: 0;
+
+    font-weight: 300;
+}
+.book-details h3 span{
+    font-weight: 600;
+}
+
+.book-details p{
+    font-weight: 300;
+}
+
+.book-details header{
+    grid-area: header ;
+    margin-top: 10px;
+}
+
+.book-details header> h3{
+font-weight: 400;
+}
+
+.book-details .details-area{
+    grid-area: details;
+}
+
+.book-details .img-container{
+    grid-area: img;
+    justify-self: center;
+
+}
+
+.btn-area{
+    text-align: center;
+    margin-top: 60px;
+}
+
+.btn-area>*{
+   margin-left: 10px;
+}
+.book-details .sale-box{
+    grid-area: sale;
+    font-size: 30px;
+    height: 40px;
+    width: 130px;
+    justify-self: center;
+    align-self: flex-end;
+    text-align: center;
+    background-color: rgb(153, 240, 169);
+    border-radius: 3rem;
+
+
+} 
+
+.green{
+    color: rgb(8, 170, 32);
+}
+
+.red{
+    color: rgb(214, 0, 0);
+}
+
+
+
+
+
