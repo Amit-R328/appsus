@@ -7,6 +7,8 @@ import { BookApp } from './js/apps/book/pages/book-app.jsx'
 import { AppHome } from "./js/pages/app-home.jsx";
 import { UserMsg } from "./js/cmps/user-msg.jsx";
 import { NoteDetails } from "./js/apps/keep/pages/note-details.jsx";
+import { BookDetails } from "./js/apps/book/pages/book-details.jsx";
+import { BookReview } from "./js/apps/book/pages/book-review.jsx";
 
 
 export function App() {
@@ -17,10 +19,13 @@ export function App() {
                 <Switch>
                     
                     <Route path="/notes/:noteId" component={NoteDetails} />
+                    <Route path="/book/review/:bookId" component={BookReview}/>
+
+                    <Route path="/book/:bookId" component={BookDetails}/>
 
                     <Route path="/notes" component={NoteApp} />
                     <Route path="/email" component={EmailApp} />
-                    <Route path="/books" component={BookApp}/>
+                    <Route path="/book" component={BookApp}/>
                     {/* <Route path="/about" component={About} /> */}
                     <Route exact path="/" component={AppHome} />
                 </Switch>

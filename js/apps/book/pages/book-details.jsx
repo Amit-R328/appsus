@@ -10,6 +10,7 @@ export class BookDetails extends React.Component {
     }
 
     componentDidMount() {
+        console.log('in');
         this.loadBook()
     }
 
