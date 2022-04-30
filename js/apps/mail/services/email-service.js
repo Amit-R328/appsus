@@ -23,11 +23,11 @@ export const emailService = {
 const STORAGE_KAY = 'emailsDB'
 let gEmails = storageService.loadFromStorage(STORAGE_KAY) || [{
     id: utilService.makeId(4),
-    subject: 'Hello!',
+    subject: 'Hello! I hope you\'r fine',
     body: 'Did you know? Lorem ipsum dolor sit ame, Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum ',
     isRead: true,
     isStared: true,
-    isChecked: true,
+    isChecked: false,
     folder: 'inbox',
     sentAt: Date.now(),
     composer: 'noam356@gmail.com',
@@ -71,18 +71,6 @@ let gEmails = storageService.loadFromStorage(STORAGE_KAY) || [{
 },
 {
     id: utilService.makeId(4),
-    subject: 'About my offer',
-    body: 'for a tiny sum of one million dollar i can reclaim',
-    isRead: true,
-    isStared: true,
-    isChecked: false,
-    folder: 'inbox',
-    sentAt: Date.now(),
-    composer: 'nigirian_prince@gmail.com',
-    receiver: 'puki@appsus.com'
-},
-{
-    id: utilService.makeId(4),
     subject: 'New message in group conversation with Opal Pinchas and Ori Ben Amram - Coding Academy',
     body: 'You have a new mention in Coding Academy - Mar 22 (codingacademy-mar22.slack.com)',
     isRead: true,
@@ -95,7 +83,7 @@ let gEmails = storageService.loadFromStorage(STORAGE_KAY) || [{
 },
 {
     id: utilService.makeId(4),
-    subject: 'intersting info',
+    subject: 'intersting info about the web',
     body: 'The hyperlink structure of the web is described by the webgraph: the nodes of the web graph correspond to the web pages (or URLs) the directed edges between them to the hyperlinks.',
     isRead: true,
     isStared: true,
