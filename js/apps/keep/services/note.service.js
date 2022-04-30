@@ -13,8 +13,8 @@ export const noteService = {
     getNoteByType,
     addRow,
     deleteRow,
-    doneToggle,
-    editNote,
+    doneToggle
+    // editNote,
 }
 
 const KEY = 'notesDB'
@@ -96,8 +96,8 @@ function getNoteByType(type) {
                 }
             ]
             break;
-        case 'note-img':
-            note.info.url = 'Enter url'
+        // case 'note-img':
+        //     note.info.url = 'Enter url'
     }
 
     return Promise.resolve(note)
@@ -162,24 +162,26 @@ function setNote(editNote, noteId) {
     return Promise.resolve()
 }
 
-function editNote(noteId, info) {
-    const editIdx = _getNoteIdx(noteId)
 
-    if (editIdx !== -1) {
+// function editNote(noteId, info) {
+//     const notes = _loadFromStorage()
+//     const editIdx = _getNoteIdx(noteId)
 
-        if (Object.keys(info)[0] === 'backgroundColor') {
-            gNotes[editIdx].style = info
-        } else {
-            gNotes[editIdx].info = info
-        }
-        _saveNotesToStorage()
-    }
-}
+//     if (editIdx !== -1) {
+//         if (Object.keys(info)[0] === 'backgroundColor') {
+//             notes[editIdx].style = info
+//         } else {
+//             notes[editIdx].info = info
+//         }
+//         _saveNotesToStorage()
+//     }
+// }
 
-function _getNoteIdx(noteId) {
-    const idx = gNotes.findIndex(note => noteId === note.id);
-    return idx;
-}
+// function _getNoteIdx(noteId) {
+//     const notes = _loadFromStorage()
+//     const idx = notes.findIndex(note => noteId === note.id);
+//     return idx;
+// }
 
 
 function setPin(noteId) {

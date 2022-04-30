@@ -2,7 +2,7 @@ import { NoteTxt } from "./dynmaic-note/note-txt.jsx"
 import { noteService } from "../services/note.service.js"
 import { ColorInput } from "./color-input.jsx"
 import { NoteTodos } from "./dynmaic-note/note-todos.jsx"
-import { NoteImg } from "./dynmaic-note/note-img.jsx"
+// import { NoteImg } from "./dynmaic-note/note-img.jsx"
 
 export class NotePreview extends React.Component {
 
@@ -61,11 +61,14 @@ export class NotePreview extends React.Component {
 
 
     render() {
-        const { note, selectedNote, onSaveEdit, onGoBack } = this.props
+        const { note } = this.props
+
+        // const { note, selectedNote, onSaveEdit, onGoBack } = this.props
         if (!note) return <React.Fragment></React.Fragment>
         return (
             <section className="note-container">
-                <DynamicCmp note={note} onDoneToggle={this.onDoneToggle} selectedNote={selectedNote} onSaveEdit={onSaveEdit} onGoBack={onGoBack} onPinToggle={this.onPinToggle} />
+                 <DynamicCmp note={note} onDoneToggle={this.onDoneToggle} onPinToggle={this.onPinToggle} />
+                {/* <DynamicCmp note={note} onDoneToggle={this.onDoneToggle} selectedNote={selectedNote} onSaveEdit={onSaveEdit} onGoBack={onGoBack} onPinToggle={this.onPinToggle} /> */}
                 <section className="note-edit">
                     <button onClick={this.onDeleteNote}><i className="fas fa-trash-alt"></i></button>
                     <button onClick={this.onSetColor}><i className="fas fa-thin fa-palette"></i></button>
@@ -76,8 +79,9 @@ export class NotePreview extends React.Component {
     }
 }
 
+function DynamicCmp({ note, onPinToggle, onDoneToggle }) {
 
-function DynamicCmp({ note, onPinToggle, onDoneToggle, selectedNote, onGoBack, onSaveEdit}) {
+// function DynamicCmp({ note, onPinToggle, onDoneToggle, selectedNote, onGoBack, onSaveEdit}) {
 
     const { info } = note
 
@@ -86,8 +90,8 @@ function DynamicCmp({ note, onPinToggle, onDoneToggle, selectedNote, onGoBack, o
             return <NoteTxt note={note} onPinToggle={onPinToggle} />
         case 'note-todos':
             return <NoteTodos note={note} onDoneToggle={onDoneToggle} onPinToggle={onPinToggle} />
-        case 'note-img':
-            return <NoteImg noteId={note.id} info={info} selectedNote={selectedNote} onSaveEdit={onSaveEdit} onGoBack={onGoBack}/>
+        // case 'note-img':
+        //     return <NoteImg noteId={note.id} info={info} selectedNote={selectedNote} onSaveEdit={onSaveEdit} onGoBack={onGoBack}/>
         
     }
 }
