@@ -71,7 +71,7 @@ let gEmails = storageService.loadFromStorage(STORAGE_KAY) || [{
 },
 {
     id: utilService.makeId(4),
-    subject: 'New message in group conversation with Opal Pinchas and Ori Ben Amram - Coding Academy',
+    subject: 'New message in group conversation',
     body: 'You have a new mention in Coding Academy - Mar 22 (codingacademy-mar22.slack.com)',
     isRead: true,
     isStared: true,
