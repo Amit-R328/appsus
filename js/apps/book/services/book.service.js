@@ -6,7 +6,8 @@ export const bookService = {
     remove,
     addReview,
     _loadFromStorage,
-    _saveToStorage
+    _saveToStorage,
+    getNextOrPrev,
 
 }
 
@@ -30,6 +31,18 @@ function query(filterBy) {
         })
     }
     return Promise.resolve(books)
+}
+
+function getNextOrPrev(bookId, isNext){
+    const books = _loadFromStorage()
+    const currIdx = books.findIndex(book => bookId === book.id)
+    let bookIdx
+    if (isNext){
+        bookIdx = (currIdx + 1 === books.length) ? 0 : currIdx + 1
+    }else {
+        bookIdx = (currIdx - 1 < 0) ? books.length - 1 : currIdx - 1
+    }
+    return books[bookIdx].id
 }
 
 function getById(bookId) {
