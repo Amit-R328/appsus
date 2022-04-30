@@ -38,12 +38,12 @@ export class NoteAdd extends React.Component {
 function NewNote({ onNewNote }) {
     return (
         <React.Fragment>
-            <button className="add-note-btn" onClick={() => { onNewNote('note-txt'); }}>
+            <div className="add-box">
+            <div className="add-note-btn" onClick={() => { onNewNote('note-txt') }}>
                 New Note
-            </button>
-            <button onClick={() => { onNewNote('note-todos') }}>
-                New List
-            </button>
+            </div>
+            <div className="fas fa-regular fa-list" onClick={() => { onNewNote('note-todos') }}></div>
+            </div>
         </React.Fragment>
     )
 }

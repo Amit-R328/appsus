@@ -1,7 +1,20 @@
-.add-note-btn{
-    background-color: aliceblue;
-    height: 45px;
+.add-box{
+    background-color: rgb(247, 248, 249);
+    height: 40px;
     width: 350px;
-    text-align: start;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 20px;
     margin: auto;
+    color: #777373;
+    border-radius: 10px;
+    box-shadow: 0px 0px 3px 0px #b6b1b1;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-note-btn{
+    flex-grow: 1;
 }

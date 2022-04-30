@@ -66,7 +66,7 @@ export class NotePreview extends React.Component {
             <section className="note-container">
                 <DynamicCmp note={note} onDoneToggle={this.onDoneToggle} onPinToggle={this.onPinToggle} />
                 <section className="note-edit">
-                    <button onClick={this.onDeleteNote}>delete</button>
+                    <button onClick={this.onDeleteNote}><i className="fas fa-trash-alt"></i></button>
                     <button onClick={this.onSetColor}><i className="fas fa-thin fa-palette"></i></button>
                     {this.state.isOnSetColor && <ColorInput handleStyleChange={this.handleStyleChange} />}
                 </section>

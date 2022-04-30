@@ -53,18 +53,21 @@ export class NoteFilter extends React.Component {
 
 
     render() {
-        const { txt, style, type, isPinned } = this.state.filterBy
-        const className = this.state.filterBy.isPinned ? "fas fa-light fa-thumbtack" : "far fa-light fa-thumbtack"
+        const { txt, colors, types, isPinned } = this.state.filterBy
+        const className = isPinned ? "fas fa-light fa-thumbtack" : "far fa-light fa-thumbtack"
+        const todosClass = types.includes('note-todos') ? 'active' : ''
+        const txtClass = types.includes('note-txt') ? 'active' : ''
+
 
         return <section className="note-filter">
             <form onSubmit={this.onFilter}>
                 <input type="text" placeholder="Search"
                     value={txt} onChange={this.handleTxtChange} name="txt" />
-                <i className={className} onClick={this.onPinToggle}></i>
                 <button type="button" onClick={this.onSetColor}><i className="fas fa-thin fa-palette"></i></button>
-                {this.state.isOnSetColor && <ColorInput handleStyleChange={this.handleChange} />}
-                <button type="button" onClick={() => { this.handleChange('note-todos', 'types') }}>Todos</button>
-                <button type="button" onClick={() => { this.handleChange('note-txt', 'types') }}>Txt</button>
+                {this.state.isOnSetColor && <ColorInput activeColors={colors} handleStyleChange={this.handleChange} />}
+                <button type="button" className={`btn ${todosClass}`} onClick={() => { this.handleChange('note-todos', 'types') }}><i className="fas fa-regular fa-list"/></button>
+                <button type="button" className={`btn ${txtClass}`} onClick={() => { this.handleChange('note-txt', 'types') }}>Txt</button>
+                <i className={className} onClick={this.onPinToggle}></i>
             </form>
         </section>
     }

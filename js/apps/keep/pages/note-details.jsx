@@ -46,7 +46,7 @@ export class NoteDetails extends React.Component {
             <section className="note-details" >
                 <NoteEditor note={note} onSaveNote={this.onSaveNote} onPinToggle={this.onPinToggle}>
                 </NoteEditor>
-                <button onClick={this.onDeleteNote}>Delete</button>
+                <button onClick={this.onDeleteNote}className="fas fa-trash-alt"></button>
             </section>
         )
     }

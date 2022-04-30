@@ -1,0 +1,32 @@
+
+.note-filter{
+    height: 60px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.note-filter input{
+    height: 40px;
+    width: 400px;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 3px 0px #b6b1b1;
+    margin: 3px;
+
+}
+
+.note-filter button{
+    background-color: #dcdcdccf;
+    height: 30px;
+    min-width: 30px;
+    margin: 3px;
+    border-radius: 3px;    
+}
+
+
+
+
+.btn.active{
+   box-shadow: inset 0px 0px 5px 2px #b6b1b1dc;
+}
