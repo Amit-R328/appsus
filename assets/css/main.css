@@ -1,5 +1,6 @@
 @import '../.././js/apps/keep/assets/css/note-app.css';
 
+@import '../../js/apps/book/assets/css/main.css';
 @import './apps/email/email.css';
 
 @import './base/helpers.css';
@@ -11,4 +12,3 @@
 @import './pages/home.css';
 
 
-@import '../../js/apps/book/assets/css/main.css'

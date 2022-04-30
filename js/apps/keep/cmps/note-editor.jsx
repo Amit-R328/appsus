@@ -1,66 +1,61 @@
 import { ColorInput } from "./color-input.jsx"
+import { AddTxtNote } from "./dynmaic-note/add-txt-note.jsx"
+import { AddTodoNote } from "./dynmaic-note/add-todo-note.jsx"
 
 export class NoteEditor extends React.Component {
 
     state = {
-        note: {
-            info: {
-                title: 'enter title',
-                txt: 'enter txt'
-            },
-            type: "note-txt",
-            isOnSetColor: false,
-            isPinned: false
-        },
         isOnEditNote: false
     }
 
     componentDidMount() {
         const { note } = this.props
-        if (!note) return
-        this.setState({ note: note, isOnEditNote: true })
+        if (!note.id) {
+            this.setState({ note: note })
+        } else {
+            this.setState({ note: note, isOnEditNote: true })
+        }
     }
 
 
-
-    handleChange = ({ target }) => {
+    handleChange = ({ target }, idx) => {
         const field = target.name
-        const value = target.value
+        let value = target.value
+        if (idx === 0 || idx) {
+            const todos = this.state.note.info.todos
+            todos[idx].txt = value
+            value = todos
+        }
         this.setState((prevState) => ({ note: { ...prevState.note, info: { ...prevState.note.info, [field]: value } } }))
     }
+
 
     handleStyleChange = (color) => {
         this.setState((prevState) => ({ note: { ...prevState.note, style: { backgroundColor: color } }, isOnSetColor: false }))
     }
 
+
     onSetColor = () => {
         this.setState({ isOnSetColor: true })
     }
-    onPinToggle = () => {
 
-        this.setState((prevState) => ({ note: { ...prevState.note, isPinned: !this.state.note.isPinned } }))
+
+    onPinToggle = () => {
+        const { isPinned } = this.state.note
+        this.setState((prevState) => ({ note: { ...prevState.note, isPinned: !isPinned } }))
     }
 
     render() {
-        const { onAddNote } = this.props
+
         const { note } = this.state
-        const { onSaveNote } = this.props
-        const { onPinToggle } = this.props
+        if (!note) return <React.Fragment></React.Fragment>
+        const { onAddNote, onSaveNote } = this.props
         const className = note.isPinned ? "fas fa-light fa-thumbtack" : "far fa-light fa-thumbtack"
-
-
 
         return (
             <section style={note.style} className="note-editor">
-                <i className={className} onClick={onPinToggle}></i>
-                <div>
-                    <textarea style={{ ...note.style, fontWeight: 700 }} name="title" rows="1" cols="30" onChange={this.handleChange}
-                        value={note.info.title}>
-                    </textarea>
-                    <textarea style={note.style} name="txt" rows="2" cols="50" onChange={this.handleChange}
-                        value={note.info.txt}>
-                    </textarea>
-                </div>
+                <i className={className} onClick={this.onPinToggle}></i>
+                <DynamicCmp note={note} handleChange={this.handleChange} />
                 <div>
                     {!this.state.isOnEditNote && <button onClick={() => onAddNote(note)}> Add Note </button>}
                     {this.state.isOnEditNote && <button onClick={() => onSaveNote(note)}> Save </button>}
@@ -69,6 +64,18 @@ export class NoteEditor extends React.Component {
                 </div>
             </section>
         )
+    }
+}
+
+
+
+function DynamicCmp({ note, handleChange }) {
+    if (!note) return <React.Fragment></React.Fragment>
+    switch (note.type) {
+        case 'note-txt':
+            return <AddTxtNote note={note} handleChange={handleChange} />
+        case 'note-todos':
+            return <AddTodoNote note={note} handleChange={handleChange} />
     }
 }
 

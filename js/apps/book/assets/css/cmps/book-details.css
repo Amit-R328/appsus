@@ -39,8 +39,13 @@
 }
 
 .book-details header{
+    border-bottom: none;
+    display: flex;
+    align-items: unset;
+    flex-direction: column;
     grid-area: header ;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .book-details header> h3{
