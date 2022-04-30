@@ -16,6 +16,22 @@
     flex-direction: column;
     align-items: center;
   }
+
+  .user-msg-success {
+    position: fixed;
+    top: 6px;
+    left: 50%;
+    padding: 13px;
+    border-radius: 20px;
+    background: white;
+    width: fit-content;
+    height: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: 1px solid white;
+    border: 3px solid darkgreen;
+  }
   
   .user-msg-exit-btn{
     position: absolute;
@@ -87,7 +103,7 @@
     }
     
     .confirm-buttons button{
-      font-size: 2rem;
+      font-size: 1rem;
       padding: 0.5rem 1rem;
       margin: 0 1rem;
       width: 6rem;

@@ -47,6 +47,8 @@ export class BookDetails extends React.Component {
         const yearDiff = (new Date).getFullYear() - book.publishedDate
         const yearStr = (yearDiff > 10) ? '(Veteran Book)' :
             (yearDiff < 1) ? '(New!)' : '';
+        const prevBook = bookService.getNextOrPrev(book.id, false)
+        const nextBook = bookService.getNextOrPrev(book.id, true)
 
         return (
             <section className="book-details">
@@ -72,6 +74,8 @@ export class BookDetails extends React.Component {
                     <img src={book.thumbnail} />
                 </div>
                 {book.listPrice.isOnSale && <div className="sale-box">SALE!</div>}
+                <Link className="prev-btn" to={`/book/${prevBook}`}>Prev Book</Link>
+                <Link className="next-btn" to={`/book/${nextBook}`}>Next Book</Link>
             </section>
         )
     }

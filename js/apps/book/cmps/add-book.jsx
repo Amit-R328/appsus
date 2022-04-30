@@ -1,6 +1,6 @@
 import { eventBusService } from "../../../services/event-bus-service.js"
 import { GoogleBooks } from "../services/google-book.service.js"
-
+const { Link } = ReactRouterDOM
 
 export class AddBook extends React.Component {
     state = {
@@ -20,6 +20,8 @@ export class AddBook extends React.Component {
     onAdd = (book) => {
         GoogleBooks.addGoogleBook(book)
         this.props.loadBooks()
+        this.setState({bookName: '', bookOptions: []})
+        eventBusService.emit('user-msg', { txt: 'book added', type: 'success',bookId: book.id, time: 1000 * 999999 })
     }
 
     render() {
