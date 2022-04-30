@@ -42,7 +42,9 @@ function getNextOrPrev(bookId, isNext){
     }else {
         bookIdx = (currIdx - 1 < 0) ? books.length - 1 : currIdx - 1
     }
-    return books[bookIdx].id
+    // return books[bookIdx].id
+    return Promise.resolve( books[bookIdx].id)
+
 }
 
 function getById(bookId) {
