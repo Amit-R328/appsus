@@ -23,7 +23,7 @@ export const emailService = {
 const STORAGE_KAY = 'emailsDB'
 let gEmails = storageService.loadFromStorage(STORAGE_KAY) || [{
     id: utilService.makeId(4),
-    subject: 'Hello! I hope you\'r fine',
+    subject: 'Hello! I hope you are fine',
     body: 'Did you know? Lorem ipsum dolor sit ame, Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum ',
     isRead: true,
     isStared: true,

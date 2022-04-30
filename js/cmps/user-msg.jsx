@@ -72,7 +72,7 @@ import { eventBusService } from "../services/event-bus-service.js";
             <React.Fragment>
                 <section className="user-success-message">
                     {msg.txt}
-                    <Link className="book-link" to={`/book`}>Check it out</Link>
+                    <Link className="book-link" to={`/book/${bookId}`}>Check it out</Link>
                     <button className="user-msg-exit-btn" onClick={this.onCloseMsg}>X</button>
                 </section>
             </React.Fragment>

@@ -7,11 +7,11 @@
     max-width: 750px;
     padding-left: 25px;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 100px 3fr ;
+    grid-template-rows: 100px 3fr 100px;
     grid-template-areas: 
         " header sale"
         " details img"
-        
+        " btns btns"
     ;
     gap: 20px;
 
@@ -83,6 +83,12 @@ font-weight: 400;
 
 
 } 
+
+.prev-next-btns {
+    grid-area: btns;
+    display: flex;
+    justify-content: space-between;
+}
 
 .green{
     color: rgb(8, 170, 32);

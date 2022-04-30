@@ -3,16 +3,12 @@ import { utilService } from "../../../services/util.service.js"
 import { bookService } from "./book.service.js"
 
 export const GoogleBooks = {
-    getBookApi,
     getApi,
     addGoogleBook,
 }
 
 
-function getBookApi(book) {
-    const url = `https://www.googleapis.com/books/v1/volumes?printType=books&q=${book}`
-    return axios.get(url).then(res => res.data)
-}
+
 
 function getApi() {
     return 'https://www.googleapis.com/books/v1/volumes?printType=books&q='
