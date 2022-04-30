@@ -50,10 +50,12 @@ export class AddTodoNote extends React.Component {
 function Todos({ todos, handleChange, style, onDoneToggle, onDeleteRow }) {
     return todos.map((todo, idx) => {
         const className = todo.isDone ? 'done' : ''
+        const iconClass = todo.isDone ? 'far fa-solid fa-check' : 'far fa-light fa-stop'
+
 
         return (
             <div className="todo-box" key={idx}>
-                <i className="far fa-light fa-stop" onClick={() => onDoneToggle(idx, !todo.isDone)}></i>
+                <i className={iconClass} onClick={() => onDoneToggle(idx, !todo.isDone)}></i>
                 <textarea className={className} style={style} name="todos" rows="1" cols="50" onChange={(target) => handleChange(target, idx)}
                     value={todo.txt} >
                 </textarea>

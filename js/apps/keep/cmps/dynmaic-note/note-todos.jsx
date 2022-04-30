@@ -23,9 +23,10 @@ export function NoteTodos(props) {
 function Todos({ todos, onDoneToggle }) {
     return todos.map((todo, idx) => {
         const className = todo.isDone ? 'done' : ''
+        const iconClass = todo.isDone ? 'far fa-solid fa-check' : 'far fa-light fa-stop'
         return (
             <div className="todo-box" key={idx}>
-                <i className="far fa-light fa-stop" onClick={(event) => onDoneToggle(idx, !todo.isDone, event)}></i>
+                <i className={iconClass} onClick={(event) => onDoneToggle(idx, !todo.isDone, event)}></i>
                 <li className={className} >
                     {todo.txt}
                 </li>

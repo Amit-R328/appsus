@@ -1,10 +1,9 @@
 
-
-const { Link } = ReactRouterDOM
+const { Link, withRouter} = ReactRouterDOM
 
 import { eventBusService } from "../services/event-bus-service.js";
 
-export class UserMsg extends React.Component{
+ class _UserMsg extends React.Component{
     state = {
         msg: null
     }
@@ -37,6 +36,7 @@ export class UserMsg extends React.Component{
     render(){
         const {msg} = this.state
         if(!msg) return <React.Fragment></React.Fragment>
+        console.log(msg);
         if(msg.type === 'confirm') return (
             <React.Fragment>
                 <section className="user-msg confirm">
@@ -79,3 +79,6 @@ export class UserMsg extends React.Component{
         )
     }
 }
+
+
+export const UserMsg = withRouter(_UserMsg)
