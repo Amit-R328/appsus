@@ -8,6 +8,7 @@ export const utilService = {
     getMonthName,
     getFormattedDateNTime,
     getCurrencySymbol,
+    debounce,
 }
 
 function getFormattedDateNTime(date){
@@ -89,5 +90,17 @@ function getCurrencySymbol(currencyCode) {
         case "USD":
 
             return "$";
+    }
+}
+
+function debounce(cb, wait) {
+    let timeOut
+    return function executeFunc(...args) {
+        const after = () => {
+            clearTimeout(timeOut)
+            cb(...args)
+        }
+        clearTimeout(timeOut)
+        timeOut = setTimeout(after, wait)
     }
 }

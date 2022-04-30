@@ -38,7 +38,7 @@ export class BookDetails extends React.Component {
             .then((bookId) => {
                 this.props.history.push(`/book/${bookId}`)
                 this.loadBook()
-            } )
+            })
     }
 
 
@@ -84,10 +84,12 @@ export class BookDetails extends React.Component {
                 {book.listPrice.isOnSale && <div className="sale-box">SALE!</div>}
                 {/* <Link className="prev-btn" to={`/book/${prevBook}`} onClick={this.loadBook}></Link> */}
                 {/* <button onClick={()=>{this.onBookChange(prevBook)}}>Prev Book</button> */}
+                <div className="prev-next-btns">
+                    <button onClick={() => { this.onBookChange(false) }}>Prev Book</button>
+                    <button onClick={() => { this.onBookChange(true) }}>Next Book</button>
+                </div>
 
-                <button onClick={() => { this.onBookChange(false) }}>Prev Book</button>
-                <button onClick={() => { this.onBookChange(true) }}>Next Book</button>
-                
+
                 {/* <Link className="prev-btn" to={`/book/${prevBook}`} ><button> Prev Book</button></Link>
                 <Link className="next-btn" to={`/book/${nextBook}`}><button> Next Book</button></Link>  */}
             </section>
