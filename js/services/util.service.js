@@ -8,9 +8,10 @@ export const utilService = {
     getMonthName,
     getFormattedDateNTime,
     getCurrencySymbol,
+    editArr
 }
 
-function getFormattedDateNTime(date){
+function getFormattedDateNTime(date) {
     let formattedDate = new Date(date);
     const year = formattedDate.getFullYear();
     const month = formattedDate.getMonth() + 1;
@@ -33,6 +34,15 @@ function makeId(length = 6) {
     }
 
     return txt
+}
+
+function editArr(arr, val) {
+        const idx = arr.indexOf(val)
+        if (idx === -1) arr.push(val)
+        else{
+             arr.splice(idx,1)
+        }
+    return arr
 }
 
 function makeLorem(size = 100) {

@@ -22,8 +22,25 @@ _creatNotes()
 
 
 
-function query() {
+function query(filterBy) {
     let notes = _loadFromStorage()
+    if (filterBy) {
+        const { txt, colors, types, isPinned } = filterBy
+        notes = notes.filter(note => {
+            if (isPinned && note.isPinned === false) return false
+            const info = note.info
+            for (var key in info) {
+                if (info[key].includes(txt)) {
+                    const type = note.type
+                    if (types.length === 0 || types.includes(type)) {
+                        const {backgroundColor}  = note.style
+                        if (colors.length === 0 || colors.includes(backgroundColor)) return true
+                    }
+                }
+            }
+            return false
+        })
+    }
     return Promise.resolve(notes)
 }
 
@@ -100,6 +117,11 @@ function doneToggle(todos, idx, bool, noteId) {
 function addNote({ note }) {
     const notes = _loadFromStorage()
     note.id = utilService.makeId()
+    if(!note.style){
+        note.style= {
+            backgroundColor: "#FFFFFC"
+        }
+    }
     notes.push(note)
     _saveToStorage(notes)
     return Promise.resolve()
@@ -174,8 +196,8 @@ function _creatNotes() {
                     title: "Bobi and Me",
                     txt: "Fullstack Me Baby!"
                 },
-                style: {
-                    backgroundColor: "#00d"
+                style:{
+                    backgroundColor: "#FFFFFC"
                 }
             },
             {
@@ -184,6 +206,9 @@ function _creatNotes() {
                 isPinned: true,
                 info: {
                     txt: "Fullstack Me Baby!2"
+                },
+                style: {
+                    backgroundColor: "#FFFFFC"
                 }
             }]
         _saveToStorage(notes)
