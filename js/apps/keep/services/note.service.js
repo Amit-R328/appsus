@@ -13,7 +13,8 @@ export const noteService = {
     getNoteByType,
     addRow,
     deleteRow,
-    doneToggle
+    doneToggle,
+    editNote,
 }
 
 const KEY = 'notesDB'
@@ -95,6 +96,8 @@ function getNoteByType(type) {
                 }
             ]
             break;
+        case 'note-img':
+            note.info.url = 'Enter url'
     }
 
     return Promise.resolve(note)
@@ -157,6 +160,25 @@ function setNote(editNote, noteId) {
     })
     _saveToStorage(notes)
     return Promise.resolve()
+}
+
+function editNote(noteId, info) {
+    const editIdx = _getNoteIdx(noteId)
+
+    if (editIdx !== -1) {
+
+        if (Object.keys(info)[0] === 'backgroundColor') {
+            gNotes[editIdx].style = info
+        } else {
+            gNotes[editIdx].info = info
+        }
+        _saveNotesToStorage()
+    }
+}
+
+function _getNoteIdx(noteId) {
+    const idx = gNotes.findIndex(note => noteId === note.id);
+    return idx;
 }
 
 

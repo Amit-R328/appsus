@@ -8,11 +8,8 @@ export const utilService = {
     getMonthName,
     getFormattedDateNTime,
     getCurrencySymbol,
-<<<<<<< HEAD
     debounce,
-=======
     editArr
->>>>>>> 718ba6fa82134d8823c9730ffda970d99ed7230a
 }
 
 function getFormattedDateNTime(date) {
