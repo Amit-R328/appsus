@@ -5,7 +5,6 @@ export function NoteImg(props) {
     const { note, onPinToggle, onEditNote } = props
     const className = note.isPinned ? "fas fa-light fa-thumbtack" : "far fa-light fa-thumbtack"
 
-
       return (
         <Link to={`/notes/${note.id}`}>
             <div style={note.style} className="note-txt note-img" onClick={onEditNote}>
