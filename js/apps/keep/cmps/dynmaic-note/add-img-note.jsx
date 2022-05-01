@@ -3,6 +3,7 @@ export function AddImgNote(props) {
     const { handleChange, note } = props
     const imgUrl = note.info.url || ''
 
+
     return (
         <div>
             <input type="file" accept="image/*" name="url" onChange={handleChange}/>

@@ -17,6 +17,8 @@ export class NoteEditor extends React.Component {
             this.setState({ note: note, isOnEditNote: true })
         }
     }
+
+
     handleChange = (event, idx) => {
         const { target } = event
         const field = target.name
