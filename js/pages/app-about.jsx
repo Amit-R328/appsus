@@ -17,7 +17,7 @@ export class About extends React.Component {
           <div className='Opal developer-container'>
             <img src='assets/img/opal.jpg' />
             <div className='about-us-container'>
-              <span className='dev'>Opal Pinchas</span>
+              <span className='dev'>Opal Pinchas - notes and books</span>
               <span>20 Years Old</span>
               <span>Netanya</span>
               <span>Fullstack Developer</span>
