@@ -9,7 +9,7 @@ import { UserMsg } from "./js/cmps/user-msg.jsx";
 import { NoteDetails } from "./js/apps/keep/pages/note-details.jsx";
 import { BookDetails } from "./js/apps/book/pages/book-details.jsx";
 import { BookReview } from "./js/apps/book/pages/book-review.jsx";
-
+import { About } from "./js/pages/app-about.jsx";
 
 export function App() {
     return (
@@ -26,13 +26,11 @@ export function App() {
                     <Route path="/notes" component={NoteApp} />
                     <Route path="/email" component={EmailApp} />
                     <Route path="/book" component={BookApp}/>
-                    {/* <Route path="/about" component={About} /> */}
+                    <Route path="/about" component={About} />
                     <Route exact path="/" component={AppHome} />
                 </Switch>
             </main>
-            <footer>
-                {/* <AppFooter /> */}
-            </footer>
+        
             <UserMsg />
         </Router>
 

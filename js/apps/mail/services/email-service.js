@@ -117,6 +117,30 @@ let gEmails = storageService.loadFromStorage(STORAGE_KAY) || [{
     composer: 'MADA@gmail.com',
     receiver: 'puki@appsus.com'
 },
+{
+    id: utilService.makeId(4),
+    subject: 'About the conversation we had...',
+    body: 'I just wanted to add that Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum ',
+    isRead: true,
+    isStared: true,
+    isChecked: false,
+    folder: 'inbox',
+    sentAt:  new Date(2022, 11, 15).getTime(),
+    composer: 'momo@Walla.com',
+    receiver: 'puki@appsus.com'
+},
+{
+    id: utilService.makeId(4),
+    subject: 'We miss you',
+    body: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum ',
+    isRead: true,
+    isStared: true,
+    isChecked: false,
+    folder: 'inbox',
+    sentAt:  new Date(2022, 11, 15).getTime(),
+    composer: 'Muki@appsus.com',
+    receiver: 'puki@appsus.com'
+},
 ]
 
 _saveEmailsToStorage()
