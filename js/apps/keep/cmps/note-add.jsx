@@ -27,8 +27,7 @@ export class NoteAdd extends React.Component {
         return (
             <section className="note-add">
                 {!isActive && <NewNote onNewNote={this.onNewNote} />}
-                {isActive && <NoteEditor onAddNote={this.onAddNote} note={this.state.note} isOnEdit={true}/>}
-                {/* {isActive && <NoteEditor onAddNote={this.onAddNote} note={this.state.note} isOnEdit={true} selectedNote={this.props.selectedNote} onSaveEdit={this.props.onSaveEdit} onGoBack={this.props.onGoBack} />} */}
+                {isActive && <NoteEditor onAddNote={this.onAddNote} note={this.state.note} isOnEdit={true} />}
             </section>
         )
     }
@@ -38,20 +37,15 @@ export class NoteAdd extends React.Component {
 
 function NewNote({ onNewNote }) {
     return (
-     
-            <div className="add-box">
+        <div className="add-box">
             <div className="add-note-btn" onClick={() => { onNewNote('note-txt') }}>
                 New Note
             </div>
             <div className="fas fa-regular fa-list" onClick={() => { onNewNote('note-todos') }}></div>
-{/*             
-            <button onClick={() => {onNewNote('note-img')}}>
-                New Img
-            </button> */}
-      </div>
+            <div className="fas fa-thin fa-image" onClick={() => { onNewNote('note-img') }}></div>
+        </div>
     )
 }
-
 
 
 

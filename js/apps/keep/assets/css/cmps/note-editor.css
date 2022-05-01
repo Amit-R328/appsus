@@ -26,3 +26,7 @@
  .done {
     text-decoration: line-through;
  }
+
+ .img{
+     max-height: 230px;
+ }
