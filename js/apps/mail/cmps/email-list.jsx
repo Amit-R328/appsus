@@ -12,7 +12,7 @@ export function EmailList({ emails, onSelectedEmail, onCheckEmail, onCheckAllEma
                         <label htmlFor="checked-all-emails" ></label>
                         <input title="mark all emails" type="checkbox" name="checked-all-emails" className="email-checkbox" onChange={(ev) => { onCheckAllEmails(ev.nativeEvent.target.checked) }} />
                     </div>
-                    <div className="sorting">
+                    <div className="sorting-mails">
                         <select onChange={() => onSortBy(event.target.value)}>
                             <option value="sentAt">sentAt</option>
                             <option value="title">subject</option>

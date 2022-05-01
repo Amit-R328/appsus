@@ -88,6 +88,11 @@
 
 .func-left {
     display: flex;
+    gap: 10px;
+}
+
+.func-left .sorting-mails {
+    align-self: flex-end;
 }
 
 .func-right {
@@ -158,7 +163,7 @@
     margin-block-end: 1rem;
     width: 100%;
     white-space: nowrap;
-    color: rgb(94, 80, 63);
+    color: rgb(49, 98, 102);
     font-size: 1.5rem;
     transform: translateX(10%);
     cursor: pointer;
@@ -362,9 +367,14 @@ input.email-checkbox {
     }
 
     .email-center{
+        display: flex;
         flex-direction: row;
         justify-content: space-between;
-        flex-grow: 0.5;
+        flex-grow: 1.5;
+    }
+
+    .email-center .email-address {
+        align-self: flex-start;
     }
     
     .email-preview:hover {
