@@ -28,9 +28,9 @@ export function EmailPreview({email, onSelectedEmail, onCheckEmail, moveEmail, e
 
             </div>
             <div className="email-center">
-                <p>{email.composer}</p>
-                <LongTxt text={email.subject}/>
-                <p>{`${time} ${date}`}</p>
+                <p className="email-address">{email.composer}</p>
+                <LongTxt className="email-subject" text={email.subject}/>
+                <p className="date">{`${time} ${date}`}</p>
             </div>
             <div className="email-right">
                 <div onClick={(ev) =>{ev.stopPropagation(); emailReadToggle(email.id)}} className="email-read-envelope">

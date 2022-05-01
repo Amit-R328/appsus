@@ -29,7 +29,7 @@ let gEmails = storageService.loadFromStorage(STORAGE_KAY) || [{
     isStared: true,
     isChecked: false,
     folder: 'inbox',
-    sentAt: Date.now(),
+    sentAt: new Date(2021, 4, 30).getTime(),
     composer: 'noam356@gmail.com',
     receiver: 'puki@appsus.com'
 },
@@ -95,14 +95,26 @@ let gEmails = storageService.loadFromStorage(STORAGE_KAY) || [{
 },
 {
     id: utilService.makeId(4),
-    subject: 'New message in group conversation with Opal Pinchas and Ori Ben Amram - Coding Academy',
-    body: 'You have a new mention in Coding Academy - Mar 22 (codingacademy-mar22.slack.com)',
+    subject: 'Email confirmation',
+    body: 'Plase confirm your account in spotify',
     isRead: true,
     isStared: true,
     isChecked: false,
     folder: 'inbox',
-    sentAt: Date.now(),
-    composer: 'notification@slack.com',
+    sentAt:  new Date(2019, 11, 15).getTime(),
+    composer: 'spotify@gmail.com',
+    receiver: 'puki@appsus.com'
+},
+{
+    id: utilService.makeId(4),
+    subject: 'Would you like to donate some blood',
+    body: 'there is a severe shortage of Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum ',
+    isRead: true,
+    isStared: true,
+    isChecked: false,
+    folder: 'inbox',
+    sentAt:  new Date(2019, 11, 15).getTime(),
+    composer: 'spotify@gmail.com',
     receiver: 'puki@appsus.com'
 },
 ]
@@ -137,19 +149,15 @@ function query(filterBy, sortBy) {
 }
 
 function sortMails(mails, sortBy = 'sentAt') {
-    console.log('mails', mails)
-    if (sortBy = 'subject') {
+    if (sortBy === 'title') {
         mails.sort((a, b) => {
-            if (a[sortBy].toLowerCase() < b[sortBy].toLowerCase()) return -1
-            else if (a[sortBy].toLowerCase() > b[sortBy].toLowerCase()) return 1
+            if (a.subject.toLowerCase() < b.subject.toLowerCase()) return -1
+            else if (a.subject.toLowerCase() > b.subject.toLowerCase()) return 1
             return 0
         })
     } else {
-        mails.sort((a, b) => {
-            if (a[sortBy] < b[sortBy]) return 1
-            else if (a[sortBy] > b[sortBy]) return -1
-            return 0
-        })
+        console.log('sort by date')
+        mails.sort((a, b) => b.sentAt - a.sentAt)
     }
     return mails
 }

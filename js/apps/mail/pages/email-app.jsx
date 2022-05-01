@@ -31,8 +31,8 @@ export class EmailApp extends React.Component {
     }
 
 
-    loadEmails = () => {
-        const emails = emailService.query(this.state.filterBy).then(emails => {
+    loadEmails = (sortBy = 'title') => {
+        const emails = emailService.query(this.state.filterBy, sortBy).then(emails => {
             this.setState({ emails, checkedEmails: emails.filter(email => email.isChecked) });
         })
     }
@@ -138,8 +138,7 @@ export class EmailApp extends React.Component {
 
     onSortBy = (SortBy) => {
         let {emails} = this.state
-        emailService.sortMails(emails, SortBy)
-        this.loadEmails()
+        this.loadEmails(SortBy)
     }
 
     render() {
