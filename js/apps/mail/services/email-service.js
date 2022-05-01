@@ -114,7 +114,7 @@ let gEmails = storageService.loadFromStorage(STORAGE_KAY) || [{
     isChecked: false,
     folder: 'inbox',
     sentAt:  new Date(2019, 11, 15).getTime(),
-    composer: 'spotify@gmail.com',
+    composer: 'MADA@gmail.com',
     receiver: 'puki@appsus.com'
 },
 ]
