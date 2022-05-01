@@ -1,41 +1,18 @@
-// export function NoteImg({ noteId, info, selectedNote, onSaveEdit, onGoBack }) {
+const { Link } = ReactRouterDOM
 
-//     const urlRef = React.createRef()
-//     const urlTitle = React.createRef()
+export function NoteImg(props) {
 
-//     const handleRef = () => {
-//         const setInfo = {
-//             url: urlRef.current.value,
-//             title: urlTitle.current.value
-//         }
-        
-//         onSaveEdit(noteId, setInfo)
-//     }
-
-    // if (!selectedNote || selectedNote != noteId) {
-    //     return (
-    //         <div className="note-card">
-    //             <img className="img-Note" src={`${info.url}`} />
-    //             <h3>{info.title}</h3>
-    //         </div>
-    //     )
-
-    
-    //     return (
-
-    //         <div className="edit-note" onClick={selectedNote}>
-    //             <img className="img-Note" src={`${info.url}`} />
-    //             <div className="edit-inputs">
-    //                 <p>enter new url and title </p>
-    //                 <input type="text" defaultValue={info.url} ref={urlRef} />
-    //                 <input type="text" defaultValue={info.title} ref={urlTitle} />
-    //                 <div className="edit-buttons">
-    //                     <button className="btn edit-save" onClick={() => handleRef()}> save! </button>
-    //                     <button className="btn edit-goback fas fa-times" onClick={() => onGoBack()}></button>
-
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     )
-
-    // }
+    const { note, onPinToggle, onEditNote } = props
+    const className = note.isPinned ? "fas fa-light fa-thumbtack" : "far fa-light fa-thumbtack"
+    return (
+        <Link to={`/notes/${note.id}`}>
+            <div style={note.style} className="note-txt note-img" onClick={onEditNote}>
+                <i className={className} onClick={(event) => { onPinToggle(event) }}></i>
+                <div className="img-container">
+                    <img src={note.info.url} alt="" className="img"/>
+                </div>
+                <span className="title">{note.info.title}</span>
+            </div>
+        </Link>
+    )
+}

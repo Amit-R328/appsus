@@ -14,7 +14,6 @@ export const noteService = {
     addRow,
     deleteRow,
     doneToggle
-    // editNote,
 }
 
 const KEY = 'notesDB'
@@ -34,7 +33,7 @@ function query(filterBy) {
                 if (info[key].includes(txt)) {
                     const type = note.type
                     if (types.length === 0 || types.includes(type)) {
-                        const {backgroundColor}  = note.style
+                        const { backgroundColor } = note.style
                         if (colors.length === 0 || colors.includes(backgroundColor)) return true
                     }
                 }
@@ -96,10 +95,10 @@ function getNoteByType(type) {
                 }
             ]
             break;
-        // case 'note-img':
-        //     note.info.url = 'Enter url'
+        case 'note-img':
+            break;
     }
-
+    
     return Promise.resolve(note)
 }
 
@@ -120,8 +119,8 @@ function doneToggle(todos, idx, bool, noteId) {
 function addNote({ note }) {
     const notes = _loadFromStorage()
     note.id = utilService.makeId()
-    if(!note.style){
-        note.style= {
+    if (!note.style) {
+        note.style = {
             backgroundColor: "#FFFFFC"
         }
     }
@@ -163,27 +162,6 @@ function setNote(editNote, noteId) {
 }
 
 
-// function editNote(noteId, info) {
-//     const notes = _loadFromStorage()
-//     const editIdx = _getNoteIdx(noteId)
-
-//     if (editIdx !== -1) {
-//         if (Object.keys(info)[0] === 'backgroundColor') {
-//             notes[editIdx].style = info
-//         } else {
-//             notes[editIdx].info = info
-//         }
-//         _saveNotesToStorage()
-//     }
-// }
-
-// function _getNoteIdx(noteId) {
-//     const notes = _loadFromStorage()
-//     const idx = notes.findIndex(note => noteId === note.id);
-//     return idx;
-// }
-
-
 function setPin(noteId) {
     let notes = _loadFromStorage()
     notes = notes.map(note => {
@@ -220,7 +198,7 @@ function _creatNotes() {
                     title: "Bobi and Me",
                     txt: "Fullstack Me Baby!"
                 },
-                style:{
+                style: {
                     backgroundColor: "#FFFFFC"
                 }
             },
@@ -243,6 +221,7 @@ function _creatNotes() {
 function _saveToStorage(notes) {
     storageService.saveToStorage(KEY, notes)
 }
+
 
 function _loadFromStorage() {
     return storageService.loadFromStorage(KEY)

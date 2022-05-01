@@ -1,9 +1,9 @@
 .add-box{
     background-color: rgb(247, 248, 249);
     height: 40px;
-    width: 350px;
+    max-width: 400px;
     padding-left: 10px;
-    padding-right: 10px;
+    padding-right: 0;
     font-size: 20px;
     margin: auto;
     color: #777373;
@@ -17,4 +17,8 @@
 
 .add-note-btn{
     flex-grow: 1;
+}
+
+.add-box>:not(:first-child){
+    margin-right: 10px;
 }

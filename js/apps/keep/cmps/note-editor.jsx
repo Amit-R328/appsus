@@ -1,12 +1,13 @@
 import { ColorInput } from "./color-input.jsx"
 import { AddTxtNote } from "./dynmaic-note/add-txt-note.jsx"
 import { AddTodoNote } from "./dynmaic-note/add-todo-note.jsx"
-// import { NoteImg } from "./dynmaic-note/note-img.jsx"
+import { AddImgNote } from "./dynmaic-note/add-img-note.jsx"
 export class NoteEditor extends React.Component {
 
     state = {
         isOnEditNote: false
     }
+
 
     componentDidMount() {
         const { note } = this.props
@@ -16,11 +17,10 @@ export class NoteEditor extends React.Component {
             this.setState({ note: note, isOnEditNote: true })
         }
     }
-
-
-    handleChange = ({ target }, idx) => {
+    handleChange = (event, idx) => {
+        const { target } = event
         const field = target.name
-        let value = target.value
+        let value = (target.type==='file') ? URL.createObjectURL(event.target.files[0]) : target.value
         if (idx === 0 || idx) {
             const todos = this.state.note.info.todos
             todos[idx].txt = value
@@ -45,6 +45,7 @@ export class NoteEditor extends React.Component {
         this.setState((prevState) => ({ note: { ...prevState.note, isPinned: !isPinned } }))
     }
 
+
     render() {
 
         const { note } = this.state
@@ -55,8 +56,7 @@ export class NoteEditor extends React.Component {
         return (
             <section style={note.style} className="note-editor">
                 <i className={className} onClick={this.onPinToggle}></i>
-                <DynamicCmp note={note} handleChange={this.handleChange}/>
-                {/* <DynamicCmp note={note} handleChange={this.handleChange} selectedNote={this.props.selectedNote} onSaveEdit={this.props.onSaveEdit} onGoBack={this.props.onGoBack}/> */}
+                <DynamicCmp note={note} handleChange={this.handleChange} />
                 <div>
                     {!this.state.isOnEditNote && <button onClick={() => onAddNote(note)}> Add Note </button>}
                     {this.state.isOnEditNote && <button onClick={() => onSaveNote(note)}> Save </button>}
@@ -70,18 +70,15 @@ export class NoteEditor extends React.Component {
 
 
 function DynamicCmp({ note, handleChange }) {
-// function DynamicCmp({ note, handleChange, selectedNote, onSaveEdit, onGoBack }) {
 
-    const { info } = note
     if (!note) return <React.Fragment></React.Fragment>
     switch (note.type) {
         case 'note-txt':
             return <AddTxtNote note={note} handleChange={handleChange} />
         case 'note-todos':
             return <AddTodoNote note={note} handleChange={handleChange} />
-        // case 'note-img':
-        //     return <NoteImg noteId={note.id} handleChange={handleChange} info={info} selectedNote={selectedNote} onSaveEdit={onSaveEdit} onGoBack={onGoBack}/>
-        
+        case 'note-img':
+            return <AddImgNote note={note} handleChange={handleChange} />
     }
 }
 

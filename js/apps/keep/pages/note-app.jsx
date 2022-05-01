@@ -6,7 +6,6 @@ import { NoteFilter } from "../cmps/note-filter.jsx"
 export class NoteApp extends React.Component {
 
     state = {
-        // selectedNote: null,
         notes: null,
         filterBy: null
     }
@@ -22,19 +21,10 @@ export class NoteApp extends React.Component {
             .then(notes => this.setState((prevState) => ({ ...prevState, notes })))
     }
 
+
     onSetFilter = (filterBy) => {
-        this.setState({ filterBy }, () => {this.loadNotes(filterBy)})
+        this.setState({ filterBy }, () => { this.loadNotes(filterBy) })
     }
-
-    // onSaveEdit = (noteId, info) => {
-    //     noteService.editNote(noteId, info)
-    //     this.setState({selectedNote: null})
-    // }
-
-    // onGoBack = () => {
-    //     this.setState({ selectedNote: null })
-    // }
-
 
 
     render() {
@@ -46,8 +36,6 @@ export class NoteApp extends React.Component {
                 <NoteFilter onSetFilter={this.onSetFilter} />
                 <NoteAdd loadNotes={this.loadNotes} />
                 <NoteList notes={notes} loadNotes={this.loadNotes} />
-                {/* <NoteAdd loadNotes={this.loadNotes} selectedNote={this.state.selectedNote} onSaveEdit={this.onSaveEdit} onGoBack={this.onGoBack}/>
-                <NoteList notes={notes} loadNotes={this.loadNotes}/> */}
             </section>
         )
     }
