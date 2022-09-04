@@ -250,7 +250,7 @@ function isUserTheComposer(composer) {
 }
 
 function toggleCheckEmailById(emailid) {
-    const email = gEmails.find(email => email.id === email.id)
+    const email = gEmails.find(email => email.id === emailid)
     if (email) {
         email.isChecked = !email.isChecked
         _saveEmailsToStorage()
